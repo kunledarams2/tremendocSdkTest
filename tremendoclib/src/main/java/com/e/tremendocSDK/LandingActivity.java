@@ -1,10 +1,16 @@
 package com.e.tremendocSDK;
 
+//import android.content.Intent;
+//import android.support.v7.app.AppCompatActivity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.e.tremendocSDK.View.UI.Activity.Signup;
 
 public class LandingActivity extends AppCompatActivity {
 
@@ -16,6 +22,13 @@ public class LandingActivity extends AppCompatActivity {
 
     public void GetApi(View view) {
 
-        Toast.makeText(this,"Get Tremendoc Api",Toast.LENGTH_LONG).show();
+//        Toast.makeText(this,"Get Tremendoc Api",Toast.LENGTH_LONG).show();
+        try {
+            Intent intent= new Intent(this, Signup.class);
+            startActivity(intent);
+        }catch (Exception e){
+            Log.e("tremendocSDK",e.getMessage());
+        }
+
     }
 }
