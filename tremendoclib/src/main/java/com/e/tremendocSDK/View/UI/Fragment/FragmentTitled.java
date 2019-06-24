@@ -1,4 +1,16 @@
 package com.e.tremendocSDK.View.UI.Fragment;
 
-public abstract class FragmentTitled {
+import androidx.fragment.app.Fragment;
+
+public abstract class FragmentTitled extends Fragment {
+
+    private String title;
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
 }
