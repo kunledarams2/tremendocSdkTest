@@ -1,15 +1,18 @@
 package com.e.tremendocSDK.View.UI.Fragment.Signup;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.e.tremendocSDK.R;
 import com.e.tremendocSDK.View.Callback.FragmentChanger;
+import com.e.tremendocSDK.View.UI.Activity.Finddoctor;
 import com.e.tremendocSDK.View.UI.Activity.Signup;
 import com.e.tremendocSDK.View.UI.Fragment.FragmentTitled;
 
@@ -21,8 +24,8 @@ import com.e.tremendocSDK.View.UI.Fragment.FragmentTitled;
  * Use the {@link stepone#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class stepone extends FragmentTitled implements FragmentChanger {
-
+public class stepone extends FragmentTitled implements FragmentChanger, View.OnClickListener {
+    Button talktodocBtn;
 
     public stepone() {
         // Required empty public constructor
@@ -54,51 +57,38 @@ public class stepone extends FragmentTitled implements FragmentChanger {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_stepone, container, false);
+        View  view=inflater.inflate(R.layout.fragment_stepone, container, false);
+        talktodocBtn=view.findViewById(R.id.signup_btn);
+        talktodocBtn.setOnClickListener(this);
+        return view;
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed() {
-//        if (mListener != null) {
-//            mListener.onFragmentInteraction(uri);
-//        }
+
     }
 
-//    @Override
-//    public void onAttach(Context context) {
-//        super.onAttach(context);
-//        if (context instanceof OnFragmentInteractionListener) {
-//            mListener = (OnFragmentInteractionListener) context;
-//        } else {
-//            throw new RuntimeException(context.toString()
-//                    + " must implement OnFragmentInteractionListener");
-//        }
-//    }
-//
-//    @Override
-//    public void onDetach() {
-//        super.onDetach();
-//        mListener = null;
-//    }
+
 
     @Override
     public void ChangeFragment(FragmentTitled fragment) {
 
     }
 
+    @Override
+    public void onClick(View view) {
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-//    public interface OnFragmentInteractionListener {
-//        // TODO: Update argument type and name
-//        void onFragmentInteraction(Uri uri);
-//    }
+        if(view==talktodocBtn){
+            Process();
+        }
+    }
+
+    private void Process(){
+        Intent intent= new Intent(getContext(), Finddoctor.class);
+        startActivity(intent);
+    }
+
+
+
 }

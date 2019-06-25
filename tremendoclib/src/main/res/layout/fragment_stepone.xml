@@ -1,20 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
-    <!--xmlns:tools="http://schemas.android.com/tools"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"-->
-    <!--tools:context=".View.UI.Fragment.Signup.stepone">-->
 
-    <!--&lt;!&ndash; TODO: Update blank fragment layout &ndash;&gt;-->
-    <!--<TextView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:text="@string/hello_blank_fragment" />-->
-
-<!--</FrameLayout>-->
-
-
-<RelativeLayout android:layout_height="match_parent"
+<RelativeLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
     android:layout_width="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android" >
 
@@ -27,17 +15,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <ScrollView
+    <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         tools:context=".fragment.signup.StepOne">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
 
             <TextView android:id="@+id/title"
                 android:text="Talk To Doctor"
@@ -62,122 +51,128 @@
                 android:layout_height="wrap_content"
                 />
 
-            <!--<ImageView android:id="@+id/logo"-->
-                <!--android:layout_margin="10dp"-->
-                <!--app:layout_constraintTop_toBottomOf="@+id/progressBar"-->
-                <!--app:layout_constraintStart_toStartOf="parent"-->
-                <!--app:layout_constraintEnd_toEndOf="parent"-->
-                <!--android:src="@drawable/logo_text"-->
-                <!--android:layout_width="@dimen/size_200"-->
-                <!--android:layout_height="wrap_content" />-->
-
-            <RelativeLayout android:id="@+id/form"
-                android:padding="10dp"
-                app:layout_constraintTop_toBottomOf="@+id/progressBar"
-                app:layout_constraintBottom_toBottomOf="parent"
+            <RelativeLayout
+                android:id="@+id/form"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="120dp"
+                android:padding="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/progressBar"
+                app:layout_constraintVertical_bias="1.0"
+                tools:layout_editor_absoluteX="0dp">
 
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/username_wrapper"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginStart="@dimen/size_20"
-                    android:layout_marginBottom="@dimen/size_10"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <EditText android:id="@+id/username"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/size_20"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="@dimen/size_10">
+
+                    <EditText
+                        android:id="@+id/username"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/colorWhite"
                         android:hint="Username"
-                        android:textSize="@dimen/font_14"
                         android:textColor="@color/colorWhite"
                         android:textColorHint="@color/colorWhite"
-                        android:backgroundTint="@color/colorWhite"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:textSize="@dimen/font_14" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/pass_wrapper"
 
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginStart="@dimen/size_20"
-                    android:layout_marginBottom="@dimen/size_10"
-                    android:layout_below="@+id/username_wrapper"
                     android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/username_wrapper"
                     android:layout_alignParentStart="true"
-                    android:layout_height="wrap_content">
-                    <EditText android:id="@+id/password"
+                    android:layout_marginStart="@dimen/size_20"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="@dimen/size_10">
+
+                    <EditText
+                        android:id="@+id/password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/colorWhite"
                         android:hint="Password"
                         android:inputType="textPassword"
-                        android:textSize="@dimen/font_14"
                         android:textColor="@color/colorWhite"
                         android:textColorHint="@color/colorWhite"
-                        android:backgroundTint="@color/colorWhite"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:textSize="@dimen/font_14" />
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <ImageButton android:id="@+id/reveal_btn"
-                    android:background="@android:color/transparent"
-                    android:padding="10dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_below="@+id/username_wrapper"
-                    android:layout_alignParentEnd="true"
-                    android:src="@drawable/ic_eye_black"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-                <TextView android:id="@+id/pass_hint"
-                    android:text="Not less that 6 characters"
-                    android:layout_below="@+id/pass_wrapper"
-                    android:layout_marginTop="-17dp"
-                    android:layout_marginStart="25dp"
-                    android:textSize="10sp"
+                <ImageButton
+                    android:id="@+id/reveal_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/colorWhite"/>
+                    android:layout_below="@+id/username_wrapper"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="20dp"
+                    android:background="@android:color/transparent"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_eye_black" />
+
+                <TextView
+                    android:id="@+id/pass_hint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/pass_wrapper"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="-17dp"
+                    android:text="Not less that 6 characters"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="10sp" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/pass2_wrapper"
 
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginStart="@dimen/size_20"
-                    android:layout_marginBottom="@dimen/size_10"
-                    android:layout_below="@+id/pass_wrapper"
                     android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/pass_wrapper"
                     android:layout_alignParentStart="true"
-                    android:layout_height="wrap_content">
-                    <EditText android:id="@+id/password_confirm"
+                    android:layout_marginStart="@dimen/size_20"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="@dimen/size_10">
+
+                    <EditText
+                        android:id="@+id/password_confirm"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/colorWhite"
                         android:hint="Confirm Password"
                         android:inputType="textPassword"
-                        android:textSize="@dimen/font_14"
                         android:textColor="@color/colorWhite"
                         android:textColorHint="@color/colorWhite"
-                        android:backgroundTint="@color/colorWhite"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:textSize="@dimen/font_14" />
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <TextView android:id="@+id/indicator"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginTop="@dimen/size_10"
-                    android:layout_marginBottom="10dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_below="@+id/pass_wrapper"
+                <TextView
+                    android:id="@+id/indicator"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/pass_wrapper"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="@dimen/size_10"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="10dp" />
 
-                <Button android:id="@+id/signup_btn"
-                    android:text="Sign up"
-                    android:layout_below="@+id/pass2_wrapper"
-                    android:layout_marginTop="@dimen/size_40"
-                    android:textSize="@dimen/font_14"
-                    android:textColor="@color/colorWhite"
-                    android:textStyle="bold"
-                    android:textAllCaps="false"
-                    android:background="@drawable/login_btn_bg"
-                    android:layout_centerHorizontal="true"
+                <Button
+                    android:id="@+id/signup_btn"
                     android:layout_width="250dp"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/pass2_wrapper"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/size_40"
+                    android:background="@drawable/login_btn_bg"
+                    android:text="Talk To Doctor"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/font_14"
+                    android:textStyle="bold" />
 
             </RelativeLayout>
 
@@ -192,35 +187,35 @@
                 <!--android:layout_width="match_parent"-->
                 <!--android:layout_height="wrap_content" />-->
 
-            <TextView android:id="@+id/signin"
-                android:text="Oops I already have an account? Sign In"
-                android:textSize="@dimen/font_14"
-                android:textColor="@color/colorWhite"
-                app:layout_constraintTop_toBottomOf="@+id/form"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="30dp"
-                android:layout_marginStart="@dimen/size_40"
-                android:layout_marginEnd="@dimen/size_40"
-                android:gravity="center"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+            <!--<TextView android:id="@+id/signin"-->
+                <!--android:text="Oops I already have an account? Sign In"-->
+                <!--android:textSize="@dimen/font_14"-->
+                <!--android:textColor="@color/colorWhite"-->
+                <!--app:layout_constraintTop_toBottomOf="@+id/form"-->
+                <!--app:layout_constraintStart_toStartOf="parent"-->
+                <!--app:layout_constraintEnd_toEndOf="parent"-->
+                <!--android:layout_marginTop="30dp"-->
+                <!--android:layout_marginStart="@dimen/size_40"-->
+                <!--android:layout_marginEnd="@dimen/size_40"-->
+                <!--android:gravity="center"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content" />-->
 
-            <TextView android:id="@+id/terms"
-                android:text="By signing up you are agreeing to the Terms of Service and Privacy Policy"
-                android:textSize="@dimen/font_12"
-                android:textColor="@color/colorWhite"
-                app:layout_constraintTop_toBottomOf="@+id/signin"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="30dp"
-                android:layout_marginStart="@dimen/size_40"
-                android:layout_marginEnd="@dimen/size_40"
-                android:gravity="center"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+            <!--<TextView android:id="@+id/terms"-->
+                <!--android:text="By signing up you are agreeing to the Terms of Service and Privacy Policy"-->
+                <!--android:textSize="@dimen/font_12"-->
+                <!--android:textColor="@color/colorWhite"-->
+                <!--app:layout_constraintTop_toBottomOf="@+id/signin"-->
+                <!--app:layout_constraintStart_toStartOf="parent"-->
+                <!--app:layout_constraintEnd_toEndOf="parent"-->
+                <!--android:layout_marginTop="30dp"-->
+                <!--android:layout_marginStart="@dimen/size_40"-->
+                <!--android:layout_marginEnd="@dimen/size_40"-->
+                <!--android:gravity="center"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content" />-->
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+    </LinearLayout>
 
 </RelativeLayout>

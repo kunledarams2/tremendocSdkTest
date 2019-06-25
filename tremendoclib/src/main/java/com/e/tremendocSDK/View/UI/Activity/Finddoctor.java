@@ -9,18 +9,20 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.e.tremendocSDK.R;
 import com.e.tremendocSDK.View.Callback.FragmentChanger;
+import com.e.tremendocSDK.View.UI.Fragment.Finddoctor.FindADoctor;
 import com.e.tremendocSDK.View.UI.Fragment.FragmentTitled;
-import com.e.tremendocSDK.View.UI.Fragment.Signup.stepone;
 
-public class Signup extends AppCompatActivity implements FragmentChanger {
-    public  static final String STEP_ONE="step_one";
+public class Finddoctor extends AppCompatActivity implements FragmentChanger {
+
+    public static  final String CHAT_WITH_DOCTOR="chat_with_doctor";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_auth);
-        changeView(STEP_ONE);
+        setContentView(R.layout.activity_findadoctor);
+        changeView(CHAT_WITH_DOCTOR);
     }
+
 
     @Override
     public void ChangeFragment(FragmentTitled fragment) {
@@ -28,21 +30,21 @@ public class Signup extends AppCompatActivity implements FragmentChanger {
     }
 
     private void changeView(Fragment fragment){
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.frame,fragment);
-        fragmentTransaction.commit();
-    }
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.frame,fragment);
+        transaction.commit();
 
-    private void changeView(String fragmentName){
+    }
+    private void changeView(String fragmentTitle){
         Fragment fragment;
-        setTitle(fragmentName);
-        switch (fragmentName){
-            case STEP_ONE: fragment= stepone.newInstance();
+        setTitle(fragmentTitle);
+        switch (fragmentTitle){
+            case CHAT_WITH_DOCTOR: fragment= FindADoctor.newInstance();
             break;
-            default:fragment= stepone.newInstance();
+            default:fragment= FindADoctor.newInstance();
+
         }
         changeView(fragment);
 
     }
-
 }
