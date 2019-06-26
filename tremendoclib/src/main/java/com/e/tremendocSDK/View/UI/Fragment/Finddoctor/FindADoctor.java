@@ -73,11 +73,11 @@ public class FindADoctor extends FragmentTitled implements FragmentChanger {
 //        }
 //    }
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-//        mListener = null;
-    }
+//    @Override
+//    public void onDetach() {
+//        super.onDetach();
+////        mListener = null;
+//    }
 
     @Override
     public void ChangeFragment(FragmentTitled fragment) {
