@@ -5,13 +5,23 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.e.tremendocSDK.Binder.Doctorbinder;
 import com.e.tremendocSDK.R;
 import com.e.tremendocSDK.View.Callback.FragmentChanger;
 import com.e.tremendocSDK.View.UI.Activity.Finddoctor;
 import com.e.tremendocSDK.View.UI.Fragment.FragmentTitled;
+import com.e.tremendocSDK.ViewModel.DoctorViewmodel;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,6 +33,18 @@ import com.e.tremendocSDK.View.UI.Fragment.FragmentTitled;
  */
 public class FindADoctor extends FragmentTitled implements FragmentChanger {
     // TODO: Rename parameter arguments, choose names that match
+
+   private RecyclerView recyclerView;
+   private ImageButton searchBtn;
+//   private LinearLayout linearLayout;
+    private RelativeLayout trylayout;
+    private Button retrybtn;
+   private  ProgressBar loader;
+   private LinearLayoutManager llm;
+   private Doctorbinder doctorbinder;
+   private DoctorViewmodel viewmodel;
+   private EditText searchField;
+   private int page ;
 
     public FindADoctor() {
         // Required empty public constructor
@@ -53,31 +75,51 @@ public class FindADoctor extends FragmentTitled implements FragmentChanger {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_findadoctor, container, false);
+        View view= inflater.inflate(R.layout.fragment_findadoctor, container, false);
+        setupView(view);
+        return view;
     }
+
+
+    private void setupView(View view){
+        recyclerView=view.findViewById(R.id.recycler_view);
+        loader = view.findViewById(R.id.progressBar);
+        searchField = view.findViewById(R.id.search_field);
+        searchBtn = view.findViewById(R.id.search_btn);
+        trylayout=view.findViewById(R.id.tryLayout);
+        retrybtn= view.findViewById(R.id.retryBtn);
+
+        retrybtn.setOnClickListener(view1 -> retrySearch());
+
+        searchBtn.setOnClickListener(btn->{
+            String query = searchField.getText().toString();
+            page =1;
+            trylayout.setVisibility(View.GONE);
+            viewmodel.fetchSearchDoctor(query,page);
+
+        });
+
+
+
+
+
+    }
+
+    private void retrySearch() {
+    }
+
+    private void setupAdapter(){
+        llm= new LinearLayoutManager(getActivity());
+
+
+    }
+
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed() {
 
     }
 
-
-//    @Override
-//    public void onAttach(Context context) {
-//        super.onAttach(context);
-//        if (context instanceof OnFragmentInteractionListener) {
-////            mListener = (OnFragmentInteractionListener) context;
-//        } else {
-//            throw new RuntimeException(context.toString()
-//                    + " must implement OnFragmentInteractionListener");
-//        }
-//    }
-
-//    @Override
-//    public void onDetach() {
-//        super.onDetach();
-////        mListener = null;
-//    }
 
     @Override
     public void ChangeFragment(FragmentTitled fragment) {
@@ -96,6 +138,6 @@ public class FindADoctor extends FragmentTitled implements FragmentChanger {
      */
 //    public interface OnFragmentInteractionListener {
 //        // TODO: Update argument type and name
-//        void onFragmentInteraction(Uri uri);
+//        void onFragmentInteraction(URLS uri);
 //    }
 }
