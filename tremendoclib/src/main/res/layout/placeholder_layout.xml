@@ -14,7 +14,7 @@
         android:layout_height="wrap_content" />
     <RelativeLayout
         android:id="@+id/tryLayout"
-        android:visibility="gne"
+        android:visibility="gone"
         android:layout_below="@+id/progressBar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
