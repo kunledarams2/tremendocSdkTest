@@ -39,9 +39,9 @@ public class Finddoctor extends AppCompatActivity implements FragmentChanger {
         Fragment fragment;
         setTitle(fragmentTitle);
         switch (fragmentTitle){
-            case CHAT_WITH_DOCTOR: fragment= FindADoctor.newInstance();
+            case CHAT_WITH_DOCTOR: fragment= FindADoctor.newInstance(1);
             break;
-            default:fragment= FindADoctor.newInstance();
+            default:fragment= FindADoctor.newInstance(1);
 
         }
         changeView(fragment);
