@@ -16,6 +16,8 @@ import com.squareup.picasso.Picasso;
 
 public class Doctorbinder extends ItemBinder<Doctor, Doctorbinder.DoctorHolder> {
 
+    public Doctorbinder() {
+    }
 
     @Override
     public Doctorbinder.DoctorHolder create(LayoutInflater inflater, ViewGroup parent) {
@@ -31,8 +33,13 @@ public class Doctorbinder extends ItemBinder<Doctor, Doctorbinder.DoctorHolder> 
     }
 
     @Override
+    public int getSpanSize(int maxSpanCount) {
+        return super.getSpanSize(maxSpanCount);
+    }
+
+    @Override
     public boolean canBindData(Object item) {
-        return false;
+        return item instanceof Doctor;
     }
 
     class DoctorHolder extends  ItemViewHolder<Doctor> {

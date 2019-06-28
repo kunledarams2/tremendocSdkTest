@@ -2,64 +2,74 @@ package com.e.tremendocSDK.View.UI.Fragment.Finddoctor;
 
 import android.os.Bundle;
 //import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
+
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
+//import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView;
-
+import com.ahamed.multiviewadapter.SimpleRecyclerAdapter;
 import com.e.tremendocSDK.Binder.Doctorbinder;
 import com.e.tremendocSDK.R;
+import com.e.tremendocSDK.Service.Model.Doctor;
+
+import com.e.tremendocSDK.View.Adapter.DocAdapter;
 import com.e.tremendocSDK.View.Callback.FragmentChanger;
 import com.e.tremendocSDK.View.UI.Activity.Finddoctor;
 import com.e.tremendocSDK.View.UI.Fragment.FragmentTitled;
 import com.e.tremendocSDK.ViewModel.DoctorViewmodel;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- *
- * to handle interaction events.
- * Use the {@link FindADoctor#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.ArrayList;
+import java.util.List;
+
+
 public class FindADoctor extends FragmentTitled implements FragmentChanger {
     // TODO: Rename parameter arguments, choose names that match
 
    private RecyclerView recyclerView;
    private ImageButton searchBtn;
 //   private LinearLayout linearLayout;
-    private RelativeLayout trylayout;
+    private RelativeLayout retrylayout;
     private Button retrybtn;
    private  ProgressBar loader;
    private LinearLayoutManager llm;
    private Doctorbinder doctorbinder;
    private DoctorViewmodel viewmodel;
    private EditText searchField;
-   private int page ;
+   private TextView errormessage;
+   private ImageView emptyIcon;
+   private int page;
+   private int specailtyId, doctorId;
+   private List<Doctor>doctor=new ArrayList<>();
+   private DocAdapter docAdapter;
+//    private SimpleRecyclerAdapter<Doctor, Doctorbinder> adapter;
+//    private SimpleRecyclerAdapter<Doctor, Doctorbinder> adapter;
 
     public FindADoctor() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @return A new instance of fragment FindADoctor.
-     */
     // TODO: Rename and change types and number of parameters
-    public static FindADoctor newInstance() {
+    public static FindADoctor newInstance(int specailtyId) {
         FindADoctor fragment = new FindADoctor();
-        fragment.setTitle(Finddoctor.CHAT_WITH_DOCTOR);
+        fragment.specailtyId = specailtyId;
+
+//        fragment.setTitle(Finddoctor.CHAT_WITH_DOCTOR);
         return fragment;
     }
 
@@ -77,6 +87,7 @@ public class FindADoctor extends FragmentTitled implements FragmentChanger {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_findadoctor, container, false);
         setupView(view);
+        setupAdapter();
         return view;
     }
 
@@ -86,16 +97,22 @@ public class FindADoctor extends FragmentTitled implements FragmentChanger {
         loader = view.findViewById(R.id.progressBar);
         searchField = view.findViewById(R.id.search_field);
         searchBtn = view.findViewById(R.id.search_btn);
-        trylayout=view.findViewById(R.id.tryLayout);
+        retrylayout=view.findViewById(R.id.tryLayout);
         retrybtn= view.findViewById(R.id.retryBtn);
+        errormessage=view.findViewById(R.id.placeholder_label);
+        emptyIcon=view.findViewById(R.id.placeholder_icon);
+//        doctor =new Doctor();
 
         retrybtn.setOnClickListener(view1 -> retrySearch());
 
         searchBtn.setOnClickListener(btn->{
             String query = searchField.getText().toString();
             page =1;
-            trylayout.setVisibility(View.GONE);
-            viewmodel.fetchSearchDoctor(query,page);
+            if(!TextUtils.isEmpty(query)){
+                retrylayout.setVisibility(View.GONE);
+                loader.setVisibility(View.VISIBLE);
+                viewmodel.fetchSearchDoctor(query,page);
+            }
 
         });
 
@@ -105,11 +122,58 @@ public class FindADoctor extends FragmentTitled implements FragmentChanger {
 
     }
 
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        viewmodel = ViewModelProviders.of(this).get(DoctorViewmodel.class);
+        observe(viewmodel);
+        viewmodel.fetchSpecialyDoctor(specailtyId,page);
+
+    }
+
+    private void observe(DoctorViewmodel viewmodel) {
+        viewmodel.getMediatorLiveData().observe(this,doctorResult -> {
+            if(doctorResult.isSuccessful() && doctorResult.getDatalist().isEmpty()){
+                recyclerView.setVisibility(View.GONE);
+                retrylayout.setVisibility(View.VISIBLE);
+            }
+           else if(doctorResult.isSuccessful() && !doctorResult.getDatalist().isEmpty()){
+               recyclerView.setVisibility(View.VISIBLE);
+               retrylayout.setVisibility(View.GONE);
+                docAdapter=new DocAdapter(getContext(),doctorResult.getDatalist());
+
+            } else if(!doctorResult.isSuccessful()){
+               recyclerView.setVisibility(View.GONE);
+                retrylayout.setVisibility(View.VISIBLE);
+                errormessage.setText(doctorResult.getMessage());
+                emptyIcon.setImageResource(R.drawable.placeholder_error);
+
+            }
+        });
+    }
+
     private void retrySearch() {
     }
 
     private void setupAdapter(){
-        llm= new LinearLayoutManager(getActivity());
+        llm= new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(llm);
+        recyclerView.setAdapter(docAdapter);
+        recyclerView.addItemDecoration(
+                new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
+
+//        if(doctor.size()>0){
+//            docAdapter=new DocAdapter(getContext(), doctor );
+//
+//            );
+//        }
+        Doctorbinder doctorbinder= new Doctorbinder();
+
+//        adapter=new SimpleRecyclerAdapter<>(doctorbinder);
+
+//        recyclerView.setAdapter(adapter);
+
+
 
 
     }
@@ -126,18 +190,5 @@ public class FindADoctor extends FragmentTitled implements FragmentChanger {
 
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-//    public interface OnFragmentInteractionListener {
-//        // TODO: Update argument type and name
-//        void onFragmentInteraction(URLS uri);
-//    }
+
 }
