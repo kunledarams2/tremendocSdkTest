@@ -16,26 +16,21 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
+
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
-//import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView;
-import com.ahamed.multiviewadapter.SimpleRecyclerAdapter;
-import com.e.tremendocSDK.Binder.Doctorbinder;
+
 import com.e.tremendocSDK.R;
 import com.e.tremendocSDK.Service.Model.Doctor;
 
 import com.e.tremendocSDK.View.Adapter.DocAdapter;
 import com.e.tremendocSDK.View.Callback.FragmentChanger;
-import com.e.tremendocSDK.View.UI.Activity.Finddoctor;
+
 import com.e.tremendocSDK.View.UI.Fragment.FragmentTitled;
 import com.e.tremendocSDK.ViewModel.DoctorViewmodel;
 
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class FindADoctor extends FragmentTitled implements FragmentChanger {
@@ -43,22 +38,19 @@ public class FindADoctor extends FragmentTitled implements FragmentChanger {
 
    private RecyclerView recyclerView;
    private ImageButton searchBtn;
-//   private LinearLayout linearLayout;
     private RelativeLayout retrylayout;
     private Button retrybtn;
    private  ProgressBar loader;
    private LinearLayoutManager llm;
-   private Doctorbinder doctorbinder;
+
    private DoctorViewmodel viewmodel;
    private EditText searchField;
    private TextView errormessage;
    private ImageView emptyIcon;
    private int page;
    private int specailtyId, doctorId;
-   private List<Doctor>doctor=new ArrayList<>();
    private DocAdapter docAdapter;
-//    private SimpleRecyclerAdapter<Doctor, Doctorbinder> adapter;
-//    private SimpleRecyclerAdapter<Doctor, Doctorbinder> adapter;
+
 
     public FindADoctor() {
         // Required empty public constructor
@@ -167,7 +159,7 @@ public class FindADoctor extends FragmentTitled implements FragmentChanger {
 //
 //            );
 //        }
-        Doctorbinder doctorbinder= new Doctorbinder();
+//        Doctorbinder doctorbinder= new Doctorbinder();
 
 //        adapter=new SimpleRecyclerAdapter<>(doctorbinder);
 
