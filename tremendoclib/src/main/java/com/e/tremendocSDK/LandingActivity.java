@@ -6,11 +6,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.e.tremendocSDK.View.UI.Activity.Signup;
+import com.e.tremendocSDK.View.UI.Activity.Auth;
+import com.e.tremendocSDK.View.UI.Activity.Sign_up;
 
 public class LandingActivity extends AppCompatActivity {
 
@@ -24,7 +24,7 @@ public class LandingActivity extends AppCompatActivity {
 
 //        Toast.makeText(this,"Get Tremendoc Api",Toast.LENGTH_LONG).show();
         try {
-            Intent intent= new Intent(this, Signup.class);
+            Intent intent= new Intent(this, Sign_up.class);
             startActivity(intent);
         }catch (Exception e){
             Log.e("tremendocSDK",e.getMessage());

@@ -12,7 +12,7 @@ import com.e.tremendocSDK.View.Callback.FragmentChanger;
 import com.e.tremendocSDK.View.UI.Fragment.FragmentTitled;
 import com.e.tremendocSDK.View.UI.Fragment.Signup.stepone;
 
-public class Signup extends AppCompatActivity implements FragmentChanger {
+public class Auth extends AppCompatActivity implements FragmentChanger {
     public  static final String STEP_ONE="step_one";
 
     @Override

@@ -1,8 +1,6 @@
 package com.e.tremendocSDK.View.UI.Fragment.Signup;
 
-import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -13,7 +11,7 @@ import android.widget.Button;
 import com.e.tremendocSDK.R;
 import com.e.tremendocSDK.View.Callback.FragmentChanger;
 import com.e.tremendocSDK.View.UI.Activity.Finddoctor;
-import com.e.tremendocSDK.View.UI.Activity.Signup;
+import com.e.tremendocSDK.View.UI.Activity.Auth;
 import com.e.tremendocSDK.View.UI.Fragment.FragmentTitled;
 
 /**
@@ -41,7 +39,7 @@ public class stepone extends FragmentTitled implements FragmentChanger, View.OnC
     // TODO: Rename and change types and number of parameters
     public static stepone newInstance() {
         stepone fragment = new stepone();
-        fragment.setTitle(Signup.STEP_ONE);
+        fragment.setTitle(Auth.STEP_ONE);
         return fragment;
     }
 

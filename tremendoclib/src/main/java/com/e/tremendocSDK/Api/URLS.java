@@ -12,4 +12,7 @@ public class URLS {
     public static String SPECIALTY_DOCTORS = SERVER + "doctor/search/speciality/";
     public static String DOCTORS_SEARCH = SERVER + "doctor/search/name/";
     public static String DOCTORS_RANDOM = SERVER + "doctor/search/random";
+
+    public static String SDK_AUTHENICATION =SERVER +"sdk-provide/authenticate";
+    public static String SDK_CREATE_USER= SERVER + "sdk-provider/create";
 }
