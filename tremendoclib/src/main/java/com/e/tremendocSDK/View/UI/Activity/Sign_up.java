@@ -3,6 +3,7 @@ package com.e.tremendocSDK.View.UI.Activity;
 //import android.support.v7.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputType;
@@ -17,6 +18,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.e.tremendocSDK.Api.API;
@@ -44,6 +46,7 @@ public class Sign_up extends AppCompatActivity {
     private SDK_User sdk_user =  new SDK_User();
     private StringCall call;
 
+//    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,12 +57,13 @@ public class Sign_up extends AppCompatActivity {
 
     private boolean visible= false;
 
+//    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private void initEntry(){
         firstName=findViewById(R.id.firstname);
         lastName=findViewById(R.id.lastname);
-        Gender=findViewById(R.id.gender);
+
         Phone=findViewById(R.id.phone);
-        Dob=findViewById(R.id.dob);
+
         Password=findViewById(R.id.password);
         ConfirmPassord=findViewById(R.id.password_confirm);
         Indicator =findViewById(R.id.indicator);
@@ -67,14 +71,31 @@ public class Sign_up extends AppCompatActivity {
         username=findViewById(R.id.username);
         Email=findViewById(R.id.email);
 
-
+        Gender=findViewById(R.id.gender);
         ArrayList<String> gender= new ArrayList<>();
         gender.add("Male");
         gender.add("Female");
 
         ArrayAdapter<String> genderAdapter= new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,gender);
         Gender.setAdapter(genderAdapter);
-         Gender.showDropDown();
+        Gender.setOnFocusChangeListener((v1,b)->{
+            if(b){
+                Gender.showDropDown();
+            }
+        });
+
+        Gender.setOnClickListener(view -> {
+            Gender.showDropDown();
+        });
+
+
+        Dob=findViewById(R.id.dob);
+//        Dob.setShowSoftInputOnFocus(false);
+        Dob.setOnFocusChangeListener((v, b)->{
+            if(b && !dobDialogOpen){
+                openDatepicker();
+            }
+        });
 
          Dob.setOnClickListener(btn->{
              if(!dobDialogOpen){
@@ -82,11 +103,7 @@ public class Sign_up extends AppCompatActivity {
 
              }
          });
-         Dob.setOnFocusChangeListener((v, b)->{
-             if(b && !dobDialogOpen){
-                 openDatepicker();
-             }
-         });
+
 
 
 
@@ -235,10 +252,6 @@ public class Sign_up extends AppCompatActivity {
 
         }
 
-
-
-
-
     }
 
     private void Toast( String msg){
@@ -246,7 +259,4 @@ public class Sign_up extends AppCompatActivity {
 
     }
 
-    private void  Log(){
-
-    }
 }
