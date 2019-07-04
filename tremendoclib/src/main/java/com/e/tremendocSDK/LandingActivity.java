@@ -8,7 +8,6 @@ import android.util.Log;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.e.tremendocSDK.View.UI.Activity.Sign_up;
 import com.e.tremendocSDK.View.UI.Activity.Signup;
 
