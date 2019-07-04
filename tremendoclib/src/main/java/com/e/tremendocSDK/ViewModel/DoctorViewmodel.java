@@ -12,10 +12,13 @@ import com.e.tremendocSDK.Api.Result;
 import com.e.tremendocSDK.Service.Model.Doctor;
 import com.e.tremendocSDK.Service.Respository.DoctorRespository;
 
+import java.util.List;
+
 public class DoctorViewmodel extends AndroidViewModel {
 
     private Application application;
     private LiveData<Result<Doctor>> liveData;
+    private MutableLiveData<List<Doctor>>mutableLiveData;
     private MediatorLiveData<Result<Doctor>> mediatorLiveData;
 
     public DoctorViewmodel(@NonNull Application application) {

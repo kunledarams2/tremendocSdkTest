@@ -1,6 +1,7 @@
 package com.e.tremendocSDK.View.UI.Activity;
 
 //import android.support.v7.app.AppCompatActivity;
+
 import android.app.DatePickerDialog;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
@@ -26,6 +27,8 @@ import com.e.tremendocSDK.Api.StringCall;
 import com.e.tremendocSDK.Api.URLS;
 import com.e.tremendocSDK.R;
 import com.e.tremendocSDK.Service.Model.SDK_User;
+import com.e.tremendocSDK.View.Callback.FragmentChanger;
+import com.e.tremendocSDK.View.UI.Fragment.FragmentTitled;
 import com.e.tremendocSDK.View.UI.UUitil.DeviceName;
 import com.e.tremendocSDK.View.UI.UUitil.IO;
 
@@ -36,175 +39,56 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Map;
 
-public class Sign_up extends AppCompatActivity {
+public class Sign_up extends AppCompatActivity implements FragmentChanger {
 
-    private EditText firstName, lastName,  Phone, Dob, Password, ConfirmPassord,username, Email;
+    private EditText firstName, lastName, Phone, Dob, Password, ConfirmPassord, username, Email;
     private AutoCompleteTextView Gender;
     private ImageButton revnbtn;
     private TextView Indicator;
-    private boolean dobDialogOpen =false;
-    private SDK_User sdk_user =  new SDK_User();
+    private boolean dobDialogOpen = false;
+    private SDK_User sdk_user = new SDK_User();
     private StringCall call;
 
-//    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    //    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
-        initEntry();
+//        initEntry();
     }
 
-    private boolean visible= false;
+    private boolean visible = false;
 
 //    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    private void initEntry(){
-        firstName=findViewById(R.id.firstname);
-        lastName=findViewById(R.id.lastname);
-
-        Phone=findViewById(R.id.phone);
-
-        Password=findViewById(R.id.password);
-        ConfirmPassord=findViewById(R.id.password_confirm);
-        Indicator =findViewById(R.id.indicator);
-        revnbtn=findViewById(R.id.reveal_btn);
-        username=findViewById(R.id.username);
-        Email=findViewById(R.id.email);
-
-        Gender=findViewById(R.id.gender);
-        ArrayList<String> gender= new ArrayList<>();
-        gender.add("Male");
-        gender.add("Female");
-
-        ArrayAdapter<String> genderAdapter= new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,gender);
-        Gender.setAdapter(genderAdapter);
-        Gender.setOnFocusChangeListener((v1,b)->{
-            if(b){
-                Gender.showDropDown();
-            }
-        });
-
-        Gender.setOnClickListener(view -> {
-            Gender.showDropDown();
-        });
-
-
-        Dob=findViewById(R.id.dob);
-//        Dob.setShowSoftInputOnFocus(false);
-        Dob.setOnFocusChangeListener((v, b)->{
-            if(b && !dobDialogOpen){
-                openDatepicker();
-            }
-        });
-
-         Dob.setOnClickListener(btn->{
-             if(!dobDialogOpen){
-                 openDatepicker();
-
-             }
-         });
-
-
-
-
-        revnbtn.setOnClickListener(btn->{
-            if(visible){
-                Password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-                Password.setSelection(Password.length());
-                visible=false;
-
-                revnbtn.setImageResource(R.drawable.ic_eye_black);
-            }
-            else{
-                Password.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
-                Password.setSelection(Password.length());
-                revnbtn.setImageResource(R.drawable.ic_eye_green);
-            }
-        });
-
-        // comparing password and confirm_password
-
-        ConfirmPassord.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-                String confirm= editable.toString();
-                String passwordField= Password.getText().toString();
-
-                if(!TextUtils.isEmpty(confirm) && !TextUtils.isEmpty(passwordField)){
-                    if(confirm.equals(passwordField)){
-                        Indicator.setBackgroundResource(R.drawable.ic_check_green_small);
-                    }
-                    else {
-                        Indicator.setBackgroundResource(R.drawable.ic_close_red_small);
-                    }
-                }
-
-            }
-        });
-
-    }
-
-
-    private void openDatepicker() {
-        Calendar now = Calendar.getInstance();
-
-        DatePickerDialog dialog = new DatePickerDialog(this, android.R.style.Theme_Holo_Dialog, (datePicker, year, month, day) -> {
-            String strDay = String.valueOf(day).length() == 1 ? "0" + day : day + "";
-            month = month + 1;
-            String strMonth = String.valueOf(month).length() == 1 ? "0" + month : month + "";
-            String date = year + "-" + strMonth + "-" + strDay;
-            Dob.setText(date);
-        }, now.get(Calendar.YEAR), now.get(Calendar.MONTH), now.get(Calendar.DATE));
-
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-        dialog.setOnCancelListener(d -> dobDialogOpen = false);
-        dialog.setOnDismissListener(d -> dobDialogOpen = false);
-        dialog.show();
-        dobDialogOpen = true;
-    }
-
 
 
     public void SignUp(View view) {
 
         String enterFirstname = firstName.getText().toString();
         String enterLastname = lastName.getText().toString();
-        String enterPhone= Phone.getText().toString();
+        String enterPhone = Phone.getText().toString();
         String enterEmail = Email.getText().toString();
-        String enterDob= Dob.getText().toString();
+        String enterDob = Dob.getText().toString();
         String enterPassword1 = Password.getText().toString();
-        String enterPassword2= ConfirmPassord.getText().toString();
+        String enterPassword2 = ConfirmPassord.getText().toString();
         String enterUsername = username.getText().toString();
         String enterGender = Gender.getText().toString();
 
 
-        if(TextUtils.isEmpty(enterFirstname)){
+        if (TextUtils.isEmpty(enterFirstname)) {
             Toast("First Name is required");
-        } else if(TextUtils.isEmpty(enterLastname)){
+        } else if (TextUtils.isEmpty(enterLastname)) {
             Toast("Last Name is required");
-        }else if (TextUtils.isEmpty(enterPhone)){
+        } else if (TextUtils.isEmpty(enterPhone)) {
             Toast("Please enter your  phone number ");
-        }
-        else if (enterPhone.length() < 11 || enterPhone.length() > 11 || !Patterns.PHONE.matcher(enterPhone).matches()) {
+        } else if (enterPhone.length() < 11 || enterPhone.length() > 11 || !Patterns.PHONE.matcher(enterPhone).matches()) {
             Toast("Please enter a valid phone number");
-        }
-        else if (TextUtils.isEmpty(enterEmail)){
+        } else if (TextUtils.isEmpty(enterEmail)) {
             Toast("Please enter your  email address");
-        }
-        else if (!Patterns.EMAIL_ADDRESS.matcher(enterEmail).matches()){
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(enterEmail).matches()) {
             Toast("Invalid Email");
-        }  else if (TextUtils.isEmpty(enterPassword1)) {
+        } else if (TextUtils.isEmpty(enterPassword1)) {
             Toast("Password is required");
 
         } else if (enterPassword1.length() < 6) {
@@ -212,12 +96,12 @@ public class Sign_up extends AppCompatActivity {
 
         } else if (!enterPassword1.equals(enterPassword2)) {
             Toast("Passwords do not match");
-        }else if(TextUtils.isEmpty(enterUsername)){
+        } else if (TextUtils.isEmpty(enterUsername)) {
             Toast("Username is required");
         }
 
-        if( !TextUtils.isEmpty(enterFirstname ) && !TextUtils.isEmpty(enterLastname) && !TextUtils.isEmpty(enterPhone) && !TextUtils.isEmpty(enterEmail)
-                && !TextUtils.isEmpty(enterPassword1) && !TextUtils.isEmpty(enterUsername) && !TextUtils.isEmpty(enterDob) && !TextUtils.isEmpty(enterGender)){
+        if (!TextUtils.isEmpty(enterFirstname) && !TextUtils.isEmpty(enterLastname) && !TextUtils.isEmpty(enterPhone) && !TextUtils.isEmpty(enterEmail)
+                && !TextUtils.isEmpty(enterPassword1) && !TextUtils.isEmpty(enterUsername) && !TextUtils.isEmpty(enterDob) && !TextUtils.isEmpty(enterGender)) {
 
             sdk_user.setPhone(enterPhone);
             sdk_user.setLastname(enterLastname);
@@ -228,35 +112,38 @@ public class Sign_up extends AppCompatActivity {
             sdk_user.setPassword(enterPassword1);
             sdk_user.setDob(enterDob);
 
-            Map<String, String> getDetail= sdk_user.toMap();
+            Map<String, String> getDetail = sdk_user.toMap();
             getDetail.put("operatingSystem", "ANDROID");
             getDetail.put("uuid", IO.getData(this, API.MY_UUID));
             getDetail.put("brand", DeviceName.getDeviceName());
 
-            call.post(URLS.SDK_CREATE_USER,getDetail,response->{
+            call.post(URLS.SDK_CREATE_USER, getDetail, response -> {
                 try {
-                    JSONObject obj= new JSONObject();
-                    if(obj.has("code") && obj.getInt("code")==0){
+                    JSONObject obj = new JSONObject();
+                    if (obj.has("code") && obj.getInt("code") == 0) {
                         Toast("Sign Up Successful");
-                        API.setCredentials(this,response);
+                        API.setCredentials(this, response);
                     }
-                }catch (JSONException e){
+                } catch (JSONException e) {
 
                 }
 
-            },error -> {
+            }, error -> {
 
             });
-
 
 
         }
 
     }
 
-    private void Toast( String msg){
-        Toast.makeText(this,msg,Toast.LENGTH_LONG).show();
+    private void Toast(String msg) {
+        Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
 
     }
 
+    @Override
+    public void ChangeFragment(FragmentTitled fragment) {
+
+    }
 }

@@ -9,7 +9,6 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.e.tremendocSDK.View.UI.Activity.Auth;
 import com.e.tremendocSDK.View.UI.Activity.Sign_up;
 
 public class LandingActivity extends AppCompatActivity {

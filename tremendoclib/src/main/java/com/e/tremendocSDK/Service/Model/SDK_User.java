@@ -94,56 +94,56 @@ public class SDK_User {
         this.username = username;
     }
 
-    public JSONObject toJSON() throws  JSONException{
+    public JSONObject toJSON() throws JSONException {
 
-        JSONObject obj =new JSONObject();
-        obj.put("dob",getDob());
-        obj.put ("gender",getGender());
-        obj.put("email",getEmail());
-        obj.put("firstname",getFirstname());
-        obj.put("lastname",getLastname());
-        obj.put("username",getUsername());
-        obj.put("phone",getPhone());
-        obj.put("password",getPassword());
+        JSONObject obj = new JSONObject();
+        obj.put("dob", getDob());
+        obj.put("gender", getGender());
+        obj.put("email", getEmail());
+        obj.put("firstname", getFirstname());
+        obj.put("lastname", getLastname());
+        obj.put("username", getUsername());
+        obj.put("phone", getPhone());
+        obj.put("password", getPassword());
 
         return obj;
     }
 
-    public Map<String,String> toMap(){
-        Map<String, String>map=new HashMap<>();
-        map.put("dob",getDob());
-        map.put ("gender",getGender());
-        map.put("email",getEmail());
-        map.put("firstname",getFirstname());
-        map.put("lastname",getLastname());
-        map.put("username",getUsername());
-        map.put("phone",getPhone());
-        map.put("password",getPassword());
+    public Map<String, String> toMap() {
+        Map<String, String> map = new HashMap<>();
+        map.put("dob", getDob());
+        map.put("gender", getGender());
+        map.put("email", getEmail());
+        map.put("firstname", getFirstname());
+        map.put("lastname", getLastname());
+        map.put("username", getUsername());
+        map.put("phone", getPhone());
+        map.put("password", getPassword());
 
         return map;
     }
 
 
-    public static SDK_User parse (JSONObject object) throws JSONException{
+    public static SDK_User parse(JSONObject object) throws JSONException {
 
-        SDK_User sdk_user=new SDK_User();
+        SDK_User sdk_user = new SDK_User();
 
-        if(object.has("dob")){
+        if (object.has("dob")) {
             sdk_user.setDob(object.getString("dob"));
         }
-        if(object.has("gender")){
+        if (object.has("gender")) {
             sdk_user.setGender(object.getString("gender"));
         }
-        if(object.has("email")){
+        if (object.has("email")) {
             sdk_user.setEmail(object.getString("email"));
         }
-        if(object.has("firstname")){
+        if (object.has("firstname")) {
             sdk_user.setFirstname(object.getString("firstname"));
         }
-        if(object.has("lastname")){
+        if (object.has("lastname")) {
             sdk_user.setLastname(object.getString("lastname"));
         }
-        if(object.has("phone")){
+        if (object.has("phone")) {
             sdk_user.setPhone(object.getString("phone"));
 
         }
