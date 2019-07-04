@@ -96,6 +96,8 @@ public class Signup extends AppCompatActivity implements FragmentChanger, ModelS
         loadData.put("operatingSystem", "ANDROID");
         loadData.put("uuid", IO.getData(this, API.MY_UUID));
         loadData.put("brand", DeviceName.getDeviceName());
+        loadData.put("sdkType","chat");
+        loadData.put("provider","1");
 
         call.post(URLS.SDK_CREATE_USER, loadData, response -> {
             try {
@@ -119,6 +121,7 @@ public class Signup extends AppCompatActivity implements FragmentChanger, ModelS
 
         }, error -> {
             dialog.dismiss();
+
             if (error.networkResponse == null) {
                 ToastUtili.showModal(this, "Please check your internet connection");
             }

@@ -112,13 +112,14 @@ public class SDK_User {
     public Map<String, String> toMap() {
         Map<String, String> map = new HashMap<>();
         map.put("dob", getDob());
-        map.put("gender", getGender());
         map.put("email", getEmail());
         map.put("firstname", getFirstname());
+        map.put("gender", getGender());
         map.put("lastname", getLastname());
-        map.put("username", getUsername());
         map.put("phone", getPhone());
         map.put("password", getPassword());
+        map.put("username", getUsername());
+
 
         return map;
     }
