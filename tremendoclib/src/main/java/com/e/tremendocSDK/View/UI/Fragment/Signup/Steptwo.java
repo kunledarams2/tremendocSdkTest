@@ -74,6 +74,7 @@ public class Steptwo extends FragmentTitled implements  View.OnClickListener {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_steptwo, container, false);
         setView(view);
+        modelSaver=(Signup)getActivity();
         return view;
     }
 
@@ -87,13 +88,16 @@ public class Steptwo extends FragmentTitled implements  View.OnClickListener {
         dob=view.findViewById(R.id.dob);
         dob.setShowSoftInputOnFocus(false);
         dob.setOnFocusChangeListener((v,b)->{
-            if(b){
+            if(b && !dobDialogOpen){
                 openDatepicker();
             }
         });
 
         dob.setOnClickListener(view1 -> {
-            openDatepicker();
+            if(!dobDialogOpen){
+                openDatepicker();
+            }
+
         });
 
 
