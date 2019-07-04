@@ -117,6 +117,7 @@ public class Steptwo extends FragmentTitled implements  View.OnClickListener {
 
 
         signUp=view.findViewById(R.id.signup_btn);
+        signUp.setOnClickListener(this);
     }
 
 
@@ -179,7 +180,7 @@ public class Steptwo extends FragmentTitled implements  View.OnClickListener {
 
         if(!TextUtils.isEmpty(fname)&& !TextUtils.isEmpty(lname)
                 && !TextUtils.isEmpty(mphone)&& !TextUtils.isEmpty(memail)
-                && !TextUtils.isEmpty(mdob) && Patterns.PHONE.matcher(mphone).matches()){
+                && !TextUtils.isEmpty(mdob) && Patterns.PHONE.matcher(mphone).matches() &&Patterns.EMAIL_ADDRESS.matcher(memail).matches()){
 
             IO.setData(getContext(),FIRSTNAME,fname);
             IO.setData(getContext(),LASTNAME,lname);

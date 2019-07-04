@@ -24,21 +24,21 @@ import com.e.tremendocSDK.View.UI.UUitil.IO;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
-// * {@link Stepone} interface
+ * // * {@link Stepone} interface
  * to handle interaction events.
  * Use the {@link Stepone#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Stepone extends FragmentTitled implements  View.OnClickListener {
-   private Button continueBtn;
-   private EditText usernameField, password,passwordconfirm;
-   private TextView indicator;
-   private ImageButton reviewbtn;
-   private boolean visible=false;
-   private FragmentChanger fragmentChanger;
+public class Stepone extends FragmentTitled implements View.OnClickListener {
+    private Button continueBtn;
+    private EditText usernameField, password, passwordconfirm;
+    private TextView indicator;
+    private ImageButton reviewbtn;
+    private boolean visible = false;
+    private FragmentChanger fragmentChanger;
 
-   public static final String  USERNAME= "sign_up_username";
-   public static final String  PASSWORD = "sign_up_password";
+    public static final String USERNAME = "sign_up_username";
+    public static final String PASSWORD = "sign_up_password";
 
     public Stepone() {
         // Required empty public constructor
@@ -48,7 +48,6 @@ public class Stepone extends FragmentTitled implements  View.OnClickListener {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-
      * @return A new instance of fragment Stepone.
      */
     // TODO: Rename and change types and number of parameters
@@ -70,8 +69,8 @@ public class Stepone extends FragmentTitled implements  View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View  view=inflater.inflate(R.layout.fragment_stepone, container, false);
-        fragmentChanger=(Signup)getActivity();
+        View view = inflater.inflate(R.layout.fragment_stepone, container, false);
+        fragmentChanger = (Signup) getActivity();
         setView(view);
         //
 
@@ -79,30 +78,28 @@ public class Stepone extends FragmentTitled implements  View.OnClickListener {
 
     }
 
-    private void setView(View view){
+    private void setView(View view) {
 
-        usernameField= view.findViewById(R.id.username);
+        usernameField = view.findViewById(R.id.username);
         password = view.findViewById(R.id.password);
-        passwordconfirm=view.findViewById(R.id.password_confirm);
-        indicator= view.findViewById(R.id.indicator);
-        reviewbtn=view.findViewById(R.id.reveal_btn);
+        passwordconfirm = view.findViewById(R.id.password_confirm);
+        indicator = view.findViewById(R.id.indicator);
+        reviewbtn = view.findViewById(R.id.reveal_btn);
 
-        continueBtn=view.findViewById(R.id.next_btn);
+        continueBtn = view.findViewById(R.id.next_btn);
         continueBtn.setOnClickListener(this);
 
         reviewbtn.setOnClickListener(view1 -> {
-            if(visible){
-                password.setInputType(InputType.TYPE_CLASS_TEXT| InputType.TYPE_TEXT_VARIATION_PASSWORD);
+            if (visible) {
+                password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
                 password.setSelection(password.length());
 
-                visible=false;
+                visible = false;
                 reviewbtn.setImageResource(R.drawable.ic_eye_black);
-            }
-
-            else {
+            } else {
                 password.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
                 password.setSelection(password.length());
-                visible=true;
+                visible = true;
                 reviewbtn.setImageResource(R.drawable.ic_eye_green);
             }
         });
@@ -121,14 +118,13 @@ public class Stepone extends FragmentTitled implements  View.OnClickListener {
             @Override
             public void afterTextChanged(Editable editable) {
 
-                String confirm= editable.toString();
-                String passwordField= password.getText().toString();
+                String confirm = editable.toString();
+                String passwordField = password.getText().toString();
 
-                if(!TextUtils.isEmpty(passwordField) && !TextUtils.isEmpty(confirm)){
-                    if(passwordField.equals(confirm)){
+                if (!TextUtils.isEmpty(passwordField) && !TextUtils.isEmpty(confirm)) {
+                    if (passwordField.equals(confirm)) {
                         indicator.setBackgroundResource(R.drawable.ic_check_green_small);
-                    }
-                    else {
+                    } else {
                         indicator.setBackgroundResource(R.drawable.ic_close_red_small);
                     }
                 }
@@ -147,14 +143,13 @@ public class Stepone extends FragmentTitled implements  View.OnClickListener {
     @Override
     public void onClick(View view) {
 
-        if(view==continueBtn){
+        if (view == continueBtn) {
             Process();
         }
     }
 
 
-
-    private void Process(){
+    private void Process() {
 
 
         String username = usernameField.getText().toString();
@@ -163,27 +158,26 @@ public class Stepone extends FragmentTitled implements  View.OnClickListener {
 
         if (TextUtils.isEmpty(username)) {
             Toast.makeText(getContext(), "Username is required", Toast.LENGTH_LONG).show();
-        }
-
-        if (TextUtils.isEmpty(password1)) {
+        } else if (TextUtils.isEmpty(password1)) {
             Toast.makeText(getContext(), "Password is required", Toast.LENGTH_LONG).show();
         } else if (password1.length() < 6) {
             Toast.makeText(getContext(), "Password should be a minimum of 6 characters", Toast.LENGTH_LONG).show();
         } else if (!password1.equals(password2)) {
             Toast.makeText(getContext(), "Passwords do not match", Toast.LENGTH_LONG).show();
         }
-        if(!TextUtils.isEmpty(username) & !TextUtils.isEmpty(password1) && !TextUtils.isEmpty(password2)){
+        if (!TextUtils.isEmpty(username) && !TextUtils.isEmpty(password1) && !TextUtils.isEmpty(password2)
+                && password1.equals(password2) && password1.length()>6 ) {
 
-            IO.setData(getContext(),USERNAME,username);
-            IO.setData(getContext(),PASSWORD,password1);
+            IO.setData(getContext(), USERNAME, username);
+            IO.setData(getContext(), PASSWORD, password1);
 
             fragmentChanger.ChangeFragment(Steptwo.newInstance());
-
+            String getIO=IO.getData(getContext(),USERNAME);
+            Toast.makeText(getContext(),getIO,Toast.LENGTH_LONG).show();
         }
 //        Intent intent= new Intent(getContext(), Finddoctor.class);
 //        startActivity(intent);
     }
-
 
 
 }
