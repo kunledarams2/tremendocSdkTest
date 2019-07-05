@@ -39,7 +39,7 @@ public class Authm extends AppCompatActivity {
     *  Host Apps to provide their user email for query
      *  to check the existence of the user on the SDK
     * */
-    private void getEmail(String userEmail){
+   public void getEmail(String userEmail){
         email.setText(userEmail);
 
         if(Patterns.EMAIL_ADDRESS.matcher(userEmail).matches()){
