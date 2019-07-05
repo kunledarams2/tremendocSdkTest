@@ -25,6 +25,7 @@ public class Authm extends AppCompatActivity {
 
     private EditText email;
     private StringCall call;
+    private String getHostuseremail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,19 +34,22 @@ public class Authm extends AppCompatActivity {
 
         email= findViewById(R.id.email);
         call= new StringCall(this);
+        getHostuseremail=getIntent().getStringExtra("userEmail");
+
+        getEmail();
     }
 
     /**
     *  Host Apps to provide their user email for query
      *  to check the existence of the user on the SDK
     * */
-   public void getEmail(String userEmail){
-        email.setText(userEmail);
+   public void getEmail(){
+        email.setText(getHostuseremail);
 
-        if(Patterns.EMAIL_ADDRESS.matcher(userEmail).matches()){
+        if(Patterns.EMAIL_ADDRESS.matcher(getHostuseremail).matches()){
             Map<String, String> logParams= new HashMap<>();
 
-            logParams.put("email", userEmail);
+            logParams.put("email", getHostuseremail);
             logParams.put("brand", Build.BRAND);
             logParams.put("operatingSystem", "ANDROID");
             logParams.put("uuid", IO.getData(this, API.MY_UUID));
