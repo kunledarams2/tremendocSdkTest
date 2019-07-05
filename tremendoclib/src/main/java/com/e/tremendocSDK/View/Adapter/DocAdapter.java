@@ -21,18 +21,18 @@ import java.util.zip.Inflater;
 
 public class DocAdapter extends RecyclerView.Adapter<DocAdapter.DoctorViewHolder> {
 
-    Context context;
+//    Context context;
     List<Doctor> doctors=new ArrayList<>();
-
-    public DocAdapter(Context context, List<Doctor> doctors) {
-        this.context = context;
-        this.doctors = doctors;
-    }
+//
+//    public DocAdapter(Context context, List<Doctor> doctors) {
+//        this.context = context;
+//        this.doctors = doctors;
+//    }
 
     @NonNull
     @Override
     public DocAdapter.DoctorViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater inflater= LayoutInflater.from(context);
+        LayoutInflater inflater= LayoutInflater.from(parent.getContext());
         View view = inflater.inflate(R.layout.holder_doctor,parent,false);
         return new DoctorViewHolder(view);
     }
@@ -52,6 +52,11 @@ public class DocAdapter extends RecyclerView.Adapter<DocAdapter.DoctorViewHolder
     public int getItemCount() {
         return doctors.size();
     }
+
+    public void setDoctors(List<Doctor> doctors){
+        this.doctors=doctors;
+    }
+
 
     class DoctorViewHolder extends RecyclerView.ViewHolder {
         ImageView doctorAvatar;

@@ -19,15 +19,15 @@ public class LandingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_landing);
     }
 
-    public void GetApi(View view) {
-
-//        Toast.makeText(this,"Get Tremendoc Api",Toast.LENGTH_LONG).show();
-        try {
-            Intent intent= new Intent(this, Signup.class);
-            startActivity(intent);
-        }catch (Exception e){
-            Log.e("tremendocSDK",e.getMessage());
-        }
-
-    }
+//    public void GetApi(View view) {
+//
+////        Toast.makeText(this,"Get Tremendoc Api",Toast.LENGTH_LONG).show();
+//        try {
+//            Intent intent= new Intent(this, Signup.class);
+//            startActivity(intent);
+//        }catch (Exception e){
+//            Log.e("tremendocSDK",e.getMessage());
+//        }
+//
+//    }
 }

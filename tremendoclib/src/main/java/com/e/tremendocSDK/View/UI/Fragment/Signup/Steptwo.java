@@ -205,8 +205,6 @@ public class Steptwo extends FragmentTitled implements  View.OnClickListener {
 
             modelSaver.onSave(sdkUser);
 
-
-
         }
 
     }

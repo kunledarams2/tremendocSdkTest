@@ -34,7 +34,6 @@ import com.e.tremendocSDK.ViewModel.DoctorViewmodel;
 
 
 public class FindADoctor extends FragmentTitled implements FragmentChanger {
-    // TODO: Rename parameter arguments, choose names that match
 
    private RecyclerView recyclerView;
    private ImageButton searchBtn;
@@ -56,7 +55,7 @@ public class FindADoctor extends FragmentTitled implements FragmentChanger {
         // Required empty public constructor
     }
 
-    // TODO: Rename and change types and number of parameters
+
     public static FindADoctor newInstance(int specailtyId) {
         FindADoctor fragment = new FindADoctor();
         fragment.specailtyId = specailtyId;
@@ -107,49 +106,12 @@ public class FindADoctor extends FragmentTitled implements FragmentChanger {
             }
 
         });
-
-
-
-
-
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        viewmodel = ViewModelProviders.of(this).get(DoctorViewmodel.class);
-        observe(viewmodel);
-        viewmodel.fetchSpecialyDoctor(specailtyId,page);
-
-    }
-
-    private void observe(DoctorViewmodel viewmodel) {
-        viewmodel.getMediatorLiveData().observe(this,doctorResult -> {
-            if(doctorResult.isSuccessful() && doctorResult.getDatalist().isEmpty()){
-                recyclerView.setVisibility(View.GONE);
-                retrylayout.setVisibility(View.VISIBLE);
-            }
-           else if(doctorResult.isSuccessful() && !doctorResult.getDatalist().isEmpty()){
-               recyclerView.setVisibility(View.VISIBLE);
-               retrylayout.setVisibility(View.GONE);
-                docAdapter=new DocAdapter(getContext(),doctorResult.getDatalist());
-
-            } else if(!doctorResult.isSuccessful()){
-               recyclerView.setVisibility(View.GONE);
-                retrylayout.setVisibility(View.VISIBLE);
-                errormessage.setText(doctorResult.getMessage());
-                emptyIcon.setImageResource(R.drawable.placeholder_error);
-
-            }
-        });
-    }
-
-    private void retrySearch() {
     }
 
     private void setupAdapter(){
         llm= new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(llm);
+        docAdapter =new DocAdapter();
         recyclerView.setAdapter(docAdapter);
         recyclerView.addItemDecoration(
                 new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
@@ -169,6 +131,42 @@ public class FindADoctor extends FragmentTitled implements FragmentChanger {
 
 
     }
+
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        viewmodel = ViewModelProviders.of(this).get(DoctorViewmodel.class);
+        observe(viewmodel);
+        viewmodel.fetchSpecialyDoctor(specailtyId,page);
+
+    }
+
+    private void observe(DoctorViewmodel viewmodel) {
+        viewmodel.getMediatorLiveData().observe(this,doctorResult -> {
+            if(doctorResult.isSuccessful() && doctorResult.getDatalist().isEmpty()){
+                recyclerView.setVisibility(View.GONE);
+                retrylayout.setVisibility(View.VISIBLE);
+            }
+           else if(doctorResult.isSuccessful() && !doctorResult.getDatalist().isEmpty()){
+               recyclerView.setVisibility(View.VISIBLE);
+               retrylayout.setVisibility(View.GONE);
+               docAdapter.setDoctors(doctorResult.getDatalist());
+//                docAdapter=new DocAdapter(getContext(),doctorResult.getDatalist());
+
+            } else if(!doctorResult.isSuccessful()){
+               recyclerView.setVisibility(View.GONE);
+                retrylayout.setVisibility(View.VISIBLE);
+                errormessage.setText(doctorResult.getMessage());
+                emptyIcon.setImageResource(R.drawable.placeholder_error);
+
+            }
+        });
+    }
+
+    private void retrySearch() {
+    }
+
 
 
     // TODO: Rename method, update argument and hook method into UI event
