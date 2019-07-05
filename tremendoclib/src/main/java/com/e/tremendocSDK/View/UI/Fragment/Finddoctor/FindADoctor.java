@@ -47,7 +47,7 @@ public class FindADoctor extends FragmentTitled implements FragmentChanger {
    private TextView errormessage;
    private ImageView emptyIcon;
    private int page;
-   private int specailtyId, doctorId;
+   private int specialtyId, doctorId;
    private DocAdapter docAdapter;
 
 
@@ -58,9 +58,7 @@ public class FindADoctor extends FragmentTitled implements FragmentChanger {
 
     public static FindADoctor newInstance(int specailtyId) {
         FindADoctor fragment = new FindADoctor();
-        fragment.specailtyId = specailtyId;
-
-//        fragment.setTitle(Finddoctor.CHAT_WITH_DOCTOR);
+        fragment.specialtyId = specailtyId;
         return fragment;
     }
 
@@ -138,7 +136,7 @@ public class FindADoctor extends FragmentTitled implements FragmentChanger {
         super.onActivityCreated(savedInstanceState);
         viewmodel = ViewModelProviders.of(this).get(DoctorViewmodel.class);
         observe(viewmodel);
-        viewmodel.fetchSpecialyDoctor(specailtyId,page);
+        viewmodel.fetchSpecialyDoctor(specialtyId,page);
 
     }
 

@@ -61,11 +61,13 @@ public class Authm extends AppCompatActivity {
 
        call.post(URLS.SDK_AUTHENICATION, logParams,response -> {
 
-           ToastUtili.showModal(this,response);
            try{
                JSONObject obj =new JSONObject(response);
 
                if(obj.has("code") && obj.getInt("code")==0){
+
+                   API.setCredentials(this,response);
+                   API.setUserData(this, obj);
 
                    Toast.makeText(this, "Welcome",Toast.LENGTH_LONG).show();
                    Intent intent= new Intent(this,Finddoctor.class);
@@ -90,12 +92,11 @@ public class Authm extends AppCompatActivity {
            if(error.networkResponse==null){
                Toast.makeText(this,"Please check your internet ",Toast.LENGTH_LONG).show();
            }
+
+           ToastUtili.showModal(this, "Sorry an error occurred. Please try again");
+
        });
 
-
-       if(Patterns.EMAIL_ADDRESS.matcher(getHostuseremail).matches()){
-
-        }
 
 
     }

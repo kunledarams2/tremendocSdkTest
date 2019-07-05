@@ -24,18 +24,18 @@ public class LandingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_landing);
     }
 
-
-    public void GetApi(View view) {
-
-        try {
-            Intent intent= new Intent(this, Authm.class);
-//            intent.putExtra("userEmail",userEmail);
-            startActivity(intent);
-        }catch (Exception e){
-            Log.e("tremendocSDK",e.getMessage());
-        }
-
-    }
+//
+//    public void GetApi(View view) {
+//
+//        try {
+//            Intent intent= new Intent(this, Authm.class);
+////            intent.putExtra("userEmail",userEmail);
+//            startActivity(intent);
+//        }catch (Exception e){
+//            Log.e("tremendocSDK",e.getMessage());
+//        }
+//
+//    }
 
     public  void Authn(String userEmail ){
 
