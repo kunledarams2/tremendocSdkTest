@@ -35,7 +35,6 @@ public class Authm extends AppCompatActivity {
         email= findViewById(R.id.email);
         call= new StringCall(this);
         getHostuseremail=getIntent().getStringExtra("userEmail");
-
         getEmail();
     }
 
@@ -45,7 +44,7 @@ public class Authm extends AppCompatActivity {
     * */
    public void getEmail(){
         email.setText(getHostuseremail);
-
+        Toast.makeText(this, getHostuseremail,Toast.LENGTH_LONG).show();
         if(Patterns.EMAIL_ADDRESS.matcher(getHostuseremail).matches()){
             Map<String, String> logParams= new HashMap<>();
 
@@ -53,6 +52,9 @@ public class Authm extends AppCompatActivity {
             logParams.put("brand", Build.BRAND);
             logParams.put("operatingSystem", "ANDROID");
             logParams.put("uuid", IO.getData(this, API.MY_UUID));
+            logParams.put("sdkType","chat");
+            logParams.put("provider","1");
+
 
             call.post(URLS.SDK_AUTHENICATION, logParams,response -> {
 
