@@ -142,6 +142,7 @@ public class FindADoctor extends FragmentTitled implements FragmentChanger {
 
     private void observe(DoctorViewmodel viewmodel) {
         viewmodel.getMediatorLiveData().observe(this,doctorResult -> {
+            loader.setVisibility(View.GONE);
             if(doctorResult.isSuccessful() && doctorResult.getDatalist().isEmpty()){
                 recyclerView.setVisibility(View.GONE);
                 retrylayout.setVisibility(View.VISIBLE);
