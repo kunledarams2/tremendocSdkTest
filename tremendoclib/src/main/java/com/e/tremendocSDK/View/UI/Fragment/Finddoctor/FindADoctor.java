@@ -46,7 +46,7 @@ public class FindADoctor extends FragmentTitled implements FragmentChanger {
    private EditText searchField;
    private TextView errormessage;
    private ImageView emptyIcon;
-   private int page;
+   private int page= 1;
    private int specialtyId, doctorId;
    private DocAdapter docAdapter;
 
@@ -109,6 +109,7 @@ public class FindADoctor extends FragmentTitled implements FragmentChanger {
     private void setupAdapter(){
         llm= new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(llm);
+
         docAdapter =new DocAdapter();
         recyclerView.setAdapter(docAdapter);
         recyclerView.addItemDecoration(
@@ -141,10 +142,12 @@ public class FindADoctor extends FragmentTitled implements FragmentChanger {
     }
 
     private void observe(DoctorViewmodel viewmodel) {
+//        loader.setVisibility(View.GONE);
         viewmodel.getMediatorLiveData().observe(this,doctorResult -> {
             loader.setVisibility(View.GONE);
             if(doctorResult.isSuccessful() && doctorResult.getDatalist().isEmpty()){
                 recyclerView.setVisibility(View.GONE);
+                errormessage.setText("No matching doctors found");
                 retrylayout.setVisibility(View.VISIBLE);
             }
            else if(doctorResult.isSuccessful() && !doctorResult.getDatalist().isEmpty()){
@@ -167,8 +170,6 @@ public class FindADoctor extends FragmentTitled implements FragmentChanger {
     }
 
 
-
-    // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed() {
 
     }

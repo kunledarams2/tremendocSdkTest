@@ -41,7 +41,7 @@ public class DoctorRespository  {
     public  LiveData<Result<Doctor>> getDoctorSpecialy(int specialId, int page) {
 
         MutableLiveData<Result<Doctor>> data = new MutableLiveData<>();
-        Result<Doctor> result=new Result<>();
+        Result<Doctor> result=new Result();
         Map<String,String> params=new HashMap<>();
         params.put("page",String.valueOf(page));
 
@@ -86,7 +86,7 @@ public class DoctorRespository  {
 
     public LiveData<Result<Doctor>> getRandomDoctor() {
         MutableLiveData<Result<Doctor>> data=new MutableLiveData<>();
-        Result<Doctor> result=new Result<>();
+        Result<Doctor> result=new Result();
         Map<String, String> params=new HashMap<>();
 
 
@@ -134,7 +134,7 @@ public class DoctorRespository  {
     public LiveData<Result<Doctor>> getAppointedDoctor(int page) {
 
         MutableLiveData<Result<Doctor>> data=new MutableLiveData<>();
-        Result<Doctor> result=new Result<>();
+        Result<Doctor> result=new Result();
         Map<String, String> params= new HashMap<>();
 
 //        stringCall.get(URLS.);

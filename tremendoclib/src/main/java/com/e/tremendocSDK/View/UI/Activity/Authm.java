@@ -2,12 +2,14 @@ package com.e.tremendocSDK.View.UI.Activity;
 
 import android.content.Intent;
 import android.os.Build;
-import android.support.v7.app.AppCompatActivity;
+//import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Patterns;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.e.tremendocSDK.Api.API;
 import com.e.tremendocSDK.Api.StringCall;

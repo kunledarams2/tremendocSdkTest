@@ -104,7 +104,9 @@ public class Signup extends AppCompatActivity implements FragmentChanger, ModelS
                 dialog.dismiss();
                 JSONObject obj = new JSONObject(response);
                 if (obj.has("code") && obj.getInt("code") == 0) {
-                    Toast.makeText(this, "Successful Signup", Toast.LENGTH_LONG).show();
+
+                    Toast.makeText(this, response, Toast.LENGTH_LONG).show();
+
                     Intent intent = new Intent(this, Finddoctor.class);
                     startActivity(intent);
                 } else {
