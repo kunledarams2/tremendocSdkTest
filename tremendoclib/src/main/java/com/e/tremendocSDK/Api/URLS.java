@@ -4,8 +4,10 @@ import com.e.tremendocSDK.BuildConfig;
 
 public class URLS {
 
-    private static final String IP = BuildConfig.DEBUG ?  "188.166.14.154" : "178.128.8.26";
-   public static  final String SERVER = "http://" + IP + ":9000/tremendoc/api/";
+//    private static final String IP = BuildConfig.DEBUG ?  "188.166.14.154" : "178.128.8.26";
+    private static final String IP = BuildConfig.DEBUG ?  "188.166.14.154" : "188.166.14.154";
+
+    public static  final String SERVER = "http://" + IP + ":9000/tremendoc/api/";
 
 
 
