@@ -51,14 +51,14 @@ public class DoctorRespository  {
 
                 JSONObject obj =new JSONObject(response);
                 if(obj.has("code") && obj.getInt("code")==0 && !obj.isNull("doctors")){
-                    List<Doctor>doctorList=new ArrayList<>();
+                    List<Doctor>List=new ArrayList<>();
                     if(!obj.isNull("doctors")){
-                        JSONArray jsonArray = new JSONArray("doctors");
+                        JSONArray jsonArray = obj.getJSONArray("doctors");
                         for(int i=0; i<jsonArray.length(); i++){
                             Doctor doctor= Doctor.parse(jsonArray.getJSONObject(i));
-                            doctorList.add(doctor);
+                            List.add(doctor);
                         }
-                        result.setDatalist(doctorList);
+                        result.setDatalist(List);
                         log("SUCCESSFUL");
                     }
                     else{
@@ -98,7 +98,7 @@ public class DoctorRespository  {
                 if (obj.has("code") && obj.getInt("code")==0){
                     List<Doctor> list = new ArrayList<>();
                     if(!obj.isNull("doctors") && obj.getInt("totalCount")>0){
-                        JSONArray jsonArray= new JSONArray("doctors");
+                        JSONArray jsonArray= obj.getJSONArray("doctors");
                         for(int i =0; i<jsonArray.length(); i++){
                            Doctor doctor= Doctor.parse(jsonArray.getJSONObject(i));
                             list.add(doctor);
