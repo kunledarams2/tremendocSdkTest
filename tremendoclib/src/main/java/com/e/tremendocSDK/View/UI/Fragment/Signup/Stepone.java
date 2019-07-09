@@ -50,7 +50,7 @@ public class Stepone extends FragmentTitled implements View.OnClickListener {
      *
      * @return A new instance of fragment Stepone.
      */
-    // TODO: Rename and change types and number of parameters
+
     public static Stepone newInstance() {
         Stepone fragment = new Stepone();
         fragment.setTitle(Signup.STEP_ONE);

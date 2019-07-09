@@ -9,7 +9,9 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application>
-        <activity android:name=".View.UI.Activity.Authm"></activity>
+        <activity android:name=".View.UI.Activity.DirectRouting"></activity>
+        <activity android:name=".View.UI.Activity.ContactActivity" />
+        <activity android:name=".View.UI.Activity.Authm" />
         <activity
             android:name=".View.UI.Activity.Sign_up"
             android:windowSoftInputMode="adjustPan" />

@@ -11,12 +11,7 @@ import android.view.ViewGroup;
 import com.e.tremendocSDK.R;
 
 /**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link} interface
- * to handle interaction events.
- * Use the {@link Chat#newInstance} factory method to
- * create an instance of this fragment.
+
  */
 public class Chat extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
@@ -31,14 +26,8 @@ public class Chat extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     *
-     * @return A new instance of fragment Chat.
-     */
-    // TODO: Rename and change types and number of parameters
+
+
     public static Chat newInstance() {
         Chat fragment = new Chat();
         Bundle args = new Bundle();

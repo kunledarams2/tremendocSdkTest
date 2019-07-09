@@ -66,9 +66,7 @@ public class FindADoctor extends FragmentTitled implements FragmentChanger {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
 
-        }
     }
 
     @Override
@@ -111,23 +109,8 @@ public class FindADoctor extends FragmentTitled implements FragmentChanger {
         llm= new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(llm);
 
-        docAdapter =new DocAdapter();
+        docAdapter =new DocAdapter(getContext());
         recyclerView.setAdapter(docAdapter);
-        recyclerView.addItemDecoration(
-                new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
-
-//        if(doctor.size()>0){
-//            docAdapter=new DocAdapter(getContext(), doctor );
-//
-//            );
-//        }
-//        Doctorbinder doctorbinder= new Doctorbinder();
-
-//        adapter=new SimpleRecyclerAdapter<>(doctorbinder);
-
-//        recyclerView.setAdapter(adapter);
-
-
 
 
     }
