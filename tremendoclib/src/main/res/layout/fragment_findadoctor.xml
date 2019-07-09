@@ -11,6 +11,7 @@
     <EditText android:id="@+id/search_field"
         android:inputType="text"
         android:maxLines="1"
+        android:visibility="gone"
         android:paddingEnd="15dp"
         android:paddingStart="15dp"
         android:background="@drawable/input_background_rounded"
@@ -20,6 +21,24 @@
         android:layout_margin="10dp"
         android:layout_width="0dp"
         android:layout_height="45dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="5dp"
+        android:text="Talk To Doctor"
+        android:textColor="#000"
+        android:textSize="@dimen/size_18"
+        app:layout_constraintBottom_toTopOf="@+id/recycler_view"
+        app:layout_constraintEnd_toStartOf="@+id/search_btn"
+        app:layout_constraintHorizontal_bias="0.557"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include"
+        app:layout_constraintVertical_bias="1.0" />
 
     <ImageButton android:id="@+id/search_btn"
         android:src="@drawable/ic_search"
@@ -31,19 +50,20 @@
         android:layout_height="wrap_content"
         android:layout_width="50dp" />
 
-    <include layout="@layout/placeholder_layout"
-        app:layout_constraintTop_toBottomOf="@+id/search_field"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginTop="10dp"
+    <include
+        android:id="@+id/include"
+        layout="@layout/placeholder_layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        />
+        android:layout_marginTop="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/search_field" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/search_btn"
         app:layout_constraintVertical_bias="1.0"
