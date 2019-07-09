@@ -137,7 +137,7 @@ public class FindADoctor extends FragmentTitled implements FragmentChanger {
         super.onActivityCreated(savedInstanceState);
         viewmodel = ViewModelProviders.of(this).get(DoctorViewmodel.class);
         observe(viewmodel);
-        viewmodel.fetchSpecialyDoctor(specialtyId,page);
+        viewmodel.fetchSpecialyDoctor(1,page);
 
     }
 
