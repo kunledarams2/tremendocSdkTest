@@ -57,6 +57,7 @@ public class Authm extends AppCompatActivity {
        logParams.put("brand", DeviceName.getDeviceName());
        logParams.put("operatingSystem", "ANDROID");
        logParams.put("uuid", IO.getData(this, API.MY_UUID));
+
        logParams.put("sdkType","chat");
        logParams.put("provider","1");
 

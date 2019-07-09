@@ -143,7 +143,7 @@ public class FindADoctor extends FragmentTitled implements FragmentChanger {
     }
 
     private void observe(DoctorViewmodel viewmodel) {
-//        loader.setVisibility(View.GONE);
+
         viewmodel.getMediatorLiveData().observe(this,doctorResult -> {
             loader.setVisibility(View.GONE);
             if(doctorResult.isSuccessful() && doctorResult.getDatalist().isEmpty()){

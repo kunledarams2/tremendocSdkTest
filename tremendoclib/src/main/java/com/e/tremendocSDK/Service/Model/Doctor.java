@@ -85,7 +85,7 @@ public class Doctor {
 
     public static Doctor parse(JSONObject object)throws JSONException{
         Doctor doctor=new Doctor();
-        doctor.setId(object.getInt("Id"));
+        doctor.setId(object.getInt("id"));
         doctor.setFirstname(object.getString("firstname"));
         doctor.setLastname(object.getString("lastname"));
         doctor.setHospital(object.getString("hospital"));
