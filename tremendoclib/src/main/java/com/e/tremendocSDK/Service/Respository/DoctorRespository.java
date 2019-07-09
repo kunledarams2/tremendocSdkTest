@@ -62,7 +62,7 @@ public class DoctorRespository  {
                         log("SUCCESSFUL");
                     }
                     else{
-                        result.setMessage(obj.getString("des"));
+                        result.setMessage(obj.getString("description"));
                     }
 
                 }

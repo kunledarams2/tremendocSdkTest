@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -137,7 +138,7 @@ public class FindADoctor extends FragmentTitled implements FragmentChanger {
         super.onActivityCreated(savedInstanceState);
         viewmodel = ViewModelProviders.of(this).get(DoctorViewmodel.class);
         observe(viewmodel);
-        viewmodel.fetchSpecialyDoctor(1,page);
+        viewmodel.fetchSpecialyDoctor(specialtyId,page);
 
     }
 
@@ -153,6 +154,7 @@ public class FindADoctor extends FragmentTitled implements FragmentChanger {
            else if(doctorResult.isSuccessful() && !doctorResult.getDatalist().isEmpty()){
                recyclerView.setVisibility(View.VISIBLE);
                retrylayout.setVisibility(View.GONE);
+                Toast.makeText(getContext(), String.valueOf(doctorResult.getDatalist().size()),Toast.LENGTH_LONG).show();
                docAdapter.setDoctors(doctorResult.getDatalist());
 //                docAdapter=new DocAdapter(getContext(),doctorResult.getDatalist());
 
