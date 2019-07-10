@@ -17,4 +17,7 @@ public class URLS {
 
     public static String SDK_AUTHENICATION =SERVER +"sdk-provider/authenticate";
     public static String SDK_CREATE_USER= SERVER + "sdk-provider/create";
+
+    public static String DOCTOR_AVAILABLE = SERVER + "doctor/available/";
+    public static String INITIATE_CONSULTATION = SERVER + "consultation/initiate";
 }

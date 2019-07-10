@@ -1,5 +1,6 @@
 package com.e.tremendocSDK.View.Adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -73,11 +74,14 @@ public class DocAdapter extends RecyclerView.Adapter<DocAdapter.DoctorViewHolder
 
             IO.setData(context, DOCTOR_NAME,doctors.get(position).getFullname());
             IO.setData(context,DOCTOR_AVATAR,doctors.get(position).getAvatar());
-            String doctorId= String.valueOf(doctors.get(position).getId());
+//            String doctorId= String.valueOf(doctors.get(position).getId());
+            getDoctordetails.add(String.valueOf(doctors.get(position).getId()));
+            getDoctordetails.add(doctors.get(position).getSpecailtyId());
 
             Intent intent= new Intent(context, DirectRouting.class);
-            intent.putExtra("doctorId",doctorId);
+            intent.putExtra("doctorDetails", (ArrayList<String>) getDoctordetails);
             context.startActivity(intent);
+            ((Activity)context).finish();
 
         });
 

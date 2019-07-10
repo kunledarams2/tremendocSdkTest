@@ -13,6 +13,7 @@ public class Doctor {
     private double rating;
     private String hospital;
     private boolean available;
+    private String specailtyId;
 
     public String getSpecialization() {
         return specialization;
@@ -39,7 +40,7 @@ public class Doctor {
     }
 
     public String getFullname(){
-        return  firstname + "" + lastname;
+        return  " " + firstname  + " " + lastname;
     }
 
 
@@ -83,6 +84,14 @@ public class Doctor {
         this.available = available;
     }
 
+    public String getSpecailtyId() {
+        return specailtyId;
+    }
+
+    public void setSpecailtyId(String specailtyId) {
+        this.specailtyId = specailtyId;
+    }
+
     public static Doctor parse(JSONObject object)throws JSONException{
         Doctor doctor=new Doctor();
         doctor.setId(object.getInt("id"));
@@ -90,6 +99,7 @@ public class Doctor {
         doctor.setLastname(object.getString("lastname"));
         doctor.setHospital(object.getString("hospital"));
         doctor.setAvatar(object.getString("image"));
+        doctor.setSpecailtyId(object.getString("specialty"));
 
         if (object.has("onlineStatus") && !object.isNull("onlineStatus")
                 && object.getString("onlineStatus").equals("ONLINE")){
