@@ -27,6 +27,7 @@ import com.e.tremendocSDK.R;
 import com.e.tremendocSDK.Service.Model.Doctor;
 
 import com.e.tremendocSDK.View.Adapter.DocAdapter;
+import com.e.tremendocSDK.View.Callback.CallListenerBtn;
 import com.e.tremendocSDK.View.Callback.FragmentChanger;
 
 import com.e.tremendocSDK.View.UI.Fragment.FragmentTitled;
@@ -112,7 +113,12 @@ public class FindADoctor extends FragmentTitled implements FragmentChanger {
         docAdapter =new DocAdapter(getContext());
         recyclerView.setAdapter(docAdapter);
 
-
+//        docAdapter.setBtnclicklistener(new CallListenerBtn() {
+//            @Override
+//            public void callBtn(int doctorId) {
+//
+//            }
+//        });
     }
 
 

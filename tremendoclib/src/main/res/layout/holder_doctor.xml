@@ -23,9 +23,6 @@
                 android:id="@+id/avatarWrapper"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
-                app:layout_constraintBottom_toTopOf="@+id/rating"
-                app:layout_constraintEnd_toStartOf="@+id/name"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
@@ -34,6 +31,7 @@
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_alignParentStart="true"
+
                     android:layout_alignParentTop="true"
                     android:layout_centerVertical="true"
                     tools:layout_editor_absoluteX="0dp"
@@ -43,7 +41,7 @@
                     android:id="@+id/available"
                     android:layout_width="12dp"
                     android:layout_height="12dp"
-                    android:layout_marginStart="-18dp"
+                    android:layout_marginStart="-10dp"
                     android:layout_marginTop="12dp"
                     android:layout_toEndOf="@+id/avatar"
                     android:background="@drawable/circle_green" />
@@ -115,17 +113,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginRight="10dp"
                 android:layout_marginBottom="10dp"
-                android:layout_toStartOf="@+id/btn_chat"
                 android:background="@android:color/transparent"
                 android:padding="5dp"
                 android:src="@drawable/ic_call_black"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/name"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
 
             <LinearLayout
                 android:id="@+id/rating"
@@ -133,12 +129,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
+                android:layout_marginTop="48dp"
                 android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
 
+                android:layout_marginRight="8dp"
                 app:layout_constraintEnd_toStartOf="@+id/btn_voice_call"
                 app:layout_constraintStart_toEndOf="@+id/avatarWrapper"
-                tools:layout_editor_absoluteY="48dp" >
+                app:layout_constraintTop_toTopOf="parent">
 
             </LinearLayout>
 
