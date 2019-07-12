@@ -1,6 +1,8 @@
 package com.e.tremendocSDK.View.UI.Activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -24,6 +26,9 @@ public class DirectRouting extends AppCompatActivity {
 
     private List<String> getDoctorInfo= new ArrayList<>();
     private StringCall call;
+    private enum errorMessage { noSubcription, unknown , NetworkError}
+    private AlertDialog alertDialog;
+    private boolean isPosBtnDialog= false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,18 +79,61 @@ public class DirectRouting extends AppCompatActivity {
                 JSONObject obj = new JSONObject(response);
                 if(obj.has("code")&& obj.getInt("code")==0 && !obj.isNull("code")){
 
+                    String doctcontId=obj.getString("doctorConnectionId");
+                    String consumercontId= obj.getString("consumerConnectionId");
+                    String consumerId=obj.getString("consumerId");
+                    String doctorId= obj.getString("doctorId");
+                    String doctorImage= obj.getString("doctorImage");
+                    String doctorPushToken= obj.getString("doctorPushToken");
+                    String patientPushToken= obj.getString("patientPushToken");
+                    String firebaseserverKey =obj.getString("firebaseServerKey");
+                    String consultationId= obj.getString("consultationId");
+
                 }
             }catch (JSONException e){
 
             }
 
-        },error -> {});
+        },error -> {
+            if(error.networkResponse==null){
 
-
-
-
-
+            }
+        });
 
     }
 
+    private void errorShowlog(String msg, errorMessage error){
+
+        if(DirectRouting.this==null) return;
+        if(alertDialog!=null&& alertDialog.isShowing()) return;
+
+        AlertDialog.Builder builder =new AlertDialog.Builder(this);
+        builder.setMessage(msg);
+        builder.setNegativeButton("Cancel", (DInterface, i)->{
+            DInterface.dismiss();
+        });
+
+        String stBtn="";
+
+        if(error.equals(errorMessage.NetworkError)  || error.equals(errorMessage.unknown)){
+            stBtn="Retry";
+        } else if(error.equals(errorMessage.noSubcription)){
+            stBtn="Subscribe";
+        }
+
+        builder.setPositiveButton(stBtn, (DialogInterface,i)->{
+            DialogInterface.dismiss();
+        });
+
+        if(error.equals(errorMessage.NetworkError) || error.equals(errorMessage.unknown)){
+
+        }
+
+    }
+
+    private void goBack(){
+        Intent intent = new Intent(this, Finddoctor.class);
+        startActivity(intent);
+        finish();
+    }
 }
