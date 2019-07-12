@@ -143,9 +143,9 @@ public class FindADoctor extends FragmentTitled implements FragmentChanger {
            else if(doctorResult.isSuccessful() && !doctorResult.getDatalist().isEmpty()){
                recyclerView.setVisibility(View.VISIBLE);
                retrylayout.setVisibility(View.GONE);
-                Toast.makeText(getContext(), String.valueOf(doctorResult.getDatalist().size()),Toast.LENGTH_LONG).show();
+//                Toast.makeText(getContext(), String.valueOf(doctorResult.getDatalist().size()),Toast.LENGTH_LONG).show();
                docAdapter.setDoctors(doctorResult.getDatalist());
-//                docAdapter=new DocAdapter(getContext(),doctorResult.getDatalist());
+
 
             } else if(!doctorResult.isSuccessful()){
                recyclerView.setVisibility(View.GONE);

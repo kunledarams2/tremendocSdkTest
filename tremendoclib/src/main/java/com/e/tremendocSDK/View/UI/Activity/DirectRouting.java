@@ -49,6 +49,7 @@ public class DirectRouting extends AppCompatActivity {
         setContentView(R.layout.activity_direct_routing);
 
         getDoctorInfo= getIntent().getStringArrayListExtra("doctorDetails");
+        toastMessage(getDoctorInfo.get(1));
         checkDoctor();
     }
 
