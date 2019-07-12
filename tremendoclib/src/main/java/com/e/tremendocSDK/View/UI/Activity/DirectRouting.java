@@ -79,12 +79,13 @@ public class DirectRouting extends AppCompatActivity {
 
     private void initialConsultation(){
         call=new StringCall(this);
+        int specialtyId= 1;
         Map<String, String> params=new HashMap<>();
 
         params.put("consultationType","AUDIO");
         params.put("patientId", API.getCustomerId(this));
         params.put("doctorId",getDoctorInfo.get(0));
-        params.put("specialtyId",getDoctorInfo.get(1));
+        params.put("specialtyId", String.valueOf(specialtyId));
 
         call.post(URLS.INITIATE_CONSULTATION,params, response -> {
 
