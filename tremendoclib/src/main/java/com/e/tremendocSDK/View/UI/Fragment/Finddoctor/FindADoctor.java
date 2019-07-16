@@ -112,13 +112,6 @@ public class FindADoctor extends FragmentTitled implements FragmentChanger {
 
         docAdapter =new DocAdapter(getContext());
         recyclerView.setAdapter(docAdapter);
-
-//        docAdapter.setBtnclicklistener(new CallListenerBtn() {
-//            @Override
-//            public void callBtn(int doctorId) {
-//
-//            }
-//        });
     }
 
 
@@ -143,7 +136,6 @@ public class FindADoctor extends FragmentTitled implements FragmentChanger {
            else if(doctorResult.isSuccessful() && !doctorResult.getDatalist().isEmpty()){
                recyclerView.setVisibility(View.VISIBLE);
                retrylayout.setVisibility(View.GONE);
-//                Toast.makeText(getContext(), String.valueOf(doctorResult.getDatalist().size()),Toast.LENGTH_LONG).show();
                docAdapter.setDoctors(doctorResult.getDatalist());
 
 
@@ -162,6 +154,7 @@ public class FindADoctor extends FragmentTitled implements FragmentChanger {
 
 
     public void onButtonPressed() {
+
 
     }
 

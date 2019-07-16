@@ -1,12 +1,14 @@
 package com.e.tremendocSDK.View.UI.Activity;
 
 //import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.e.tremendocSDK.Audio_sdk;
 import com.e.tremendocSDK.R;
 import com.e.tremendocSDK.View.Callback.FragmentChanger;
 import com.e.tremendocSDK.View.UI.Fragment.Finddoctor.FindADoctor;
@@ -46,5 +48,15 @@ public class Finddoctor extends AppCompatActivity implements FragmentChanger {
         }
         changeView(fragment);
 
+    }
+
+    @Override
+    public void onBackPressed() {
+//        Intent intent = new Intent(this, Audio_sdk.class);
+//        startActivity(intent);
+//        finish();
+
+        onBackPressed();
+        finish();
     }
 }
