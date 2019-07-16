@@ -1,5 +1,7 @@
 package com.e.tremendocSDK.View.UI.Activity;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 
@@ -9,23 +11,21 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import com.e.tremendocSDK.Api.API;
 import com.e.tremendocSDK.Api.StringCall;
 import com.e.tremendocSDK.Api.URLS;
 import com.e.tremendocSDK.R;
-import com.e.tremendocSDK.View.UI.UUitil.IO;
-import com.e.tremendocSDK.View.UI.UUitil.ToastUtili;
-
+import com.e.tremendocSDK.View.UI.UUitil.Permission;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Formatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-//import java.util.logging.Formatter;
+
 
 import static com.e.tremendocSDK.View.UI.UUitil.CallContants.CONSULTATION_ID;
 import static com.e.tremendocSDK.View.UI.UUitil.CallContants.DOCTOR_AVATAR;
@@ -42,6 +42,11 @@ public class DirectRouting extends AppCompatActivity {
     private enum errorMessage { noSubcription, unknown , NetworkError}
     private AlertDialog alertDialog;
     private boolean isPosBtnDialog= false;
+    public static final String[] VOICE_PERMISSIONS = {Manifest.permission.READ_PHONE_STATE,
+            Manifest.permission.INTERNET,
+            Manifest.permission.RECORD_AUDIO,
+            Manifest.permission.MODIFY_AUDIO_SETTINGS};
+    private  boolean isAskedbefore = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,11 +67,29 @@ public class DirectRouting extends AppCompatActivity {
      *
      * **/
     private void checkDoctor(){
-
+        String[]permission;
         if(getDoctorInfo.get(0)!=null){
 //            Intent intent =new Intent(this, ContactActivity.class);
 //            startActivity(intent);
-            initialConsultation();
+            permission=VOICE_PERMISSIONS;
+            if(!Permission.permissionsAreGranted(this,permission)){
+                if(!isAskedbefore){
+                    ActivityCompat.requestPermissions(this,permission, Permission.PERMISSION_REQUEST);
+                    isAskedbefore=true;
+                }
+                else {
+                    Permission.showModal(this,"Grant Request to continue",
+                            ((dialogInterface, i) -> {
+                                isAskedbefore=false;
+                                initialConsultation();
+                                dialogInterface.dismiss();
+                            }));
+                }
+            }
+            else {
+                initialConsultation();
+            }
+
         }
 
 
@@ -93,6 +116,9 @@ public class DirectRouting extends AppCompatActivity {
                 JSONObject obj = new JSONObject(response);
                 if(obj.has("code")&& obj.getInt("code")==0 && !obj.isNull("code")){
 
+                    Toast.makeText(this, response,Toast.LENGTH_LONG).show();
+
+
                     String doctcontId=obj.getString("doctorConnectionId");
                     String consumercontId= obj.getString("consumerConnectionId");
                     String consumerId=obj.getString("consumerId");
@@ -114,7 +140,7 @@ public class DirectRouting extends AppCompatActivity {
                     bundle.putString(DOCTOR_AVATAR, doctorImage);
 
 
-                    Intent intent = new Intent(this,ContactActivity.class);
+                    Intent intent = new Intent(this,VoiceCall.class);
                     intent.putExtras(bundle);
                     startActivity(intent);
                     finish();
@@ -160,6 +186,7 @@ public class DirectRouting extends AppCompatActivity {
             stBtn="Retry";
         } else if(error.equals(errorMessage.noSubcription)){
             stBtn="Subscribe";
+
         }
 
         builder.setPositiveButton(stBtn, (DialogInterface,i)->{
@@ -221,4 +248,6 @@ public class DirectRouting extends AppCompatActivity {
     private void log(String e){
         Log.e("Routing", "_-_________-------------________" +e);
     }
+
+
 }

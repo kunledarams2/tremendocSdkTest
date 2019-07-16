@@ -2,24 +2,27 @@ package com.e.tremendocsdk;
 
 import android.os.Bundle;
 import android.view.View;
-//import com.e.tremendocSDK.R;
-//import android.R;
+
+//import androidx.appcompat.app.AppCompatActivity;
+//import androidx.arch.R;
+//import androidx.appcompat.app.AppCompatActivity;
+
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.e.tremendocSDK.LandingActivity;
+import com.e.tremendocSDK.Audio_sdk;
 
 public class MainActivity extends AppCompatActivity {
 
-    private  LandingActivity landingActivity;
+    Audio_sdk audio_sdk;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//
-
+//        setContentView(R.layout.activity_main);
         setContentView(R.layout.activity_main);
+        audio_sdk= new Audio_sdk(this);
     }
     public void getView(View view){
 //        GetApi(view );
-        landingActivity.Authn("user@gmail.com ");
+        audio_sdk.setupSDK("userp@gmail.com");
     }
 }
