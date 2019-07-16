@@ -6,8 +6,9 @@ public class URLS {
 
 //    private static final String IP = BuildConfig.DEBUG ?  "188.166.14.154" : "178.128.8.26";
 //    private static final String IP = BuildConfig.DEBUG ?  "188.166.14.154" : "188.166.14.154";
-    private static final String IP= BuildConfig.DEBUG  ? "192.168.88.20" : "192.168.88.20";
+//    private static final String IP= BuildConfig.DEBUG  ? "192.168.88.20" : "192.168.88.20";
 
+    private static  final String IP = BuildConfig.DEBUG ? "localhost" : "localhost";
     public static  final String SERVER = "http://" + IP + ":9000/tremendoc/api/";
 
 
