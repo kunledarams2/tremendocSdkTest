@@ -26,7 +26,7 @@ public class Audio_sdk {
             Intent intent = new Intent(context, Authm.class);
             intent.putExtra("userEmail",userEmail);
             context.startActivity(intent);
-            ((Activity)context).finish();
+//            ((Activity)context).finish();
         }
         else Toast.makeText(context,"Wrong Email",Toast.LENGTH_LONG).show();
     }

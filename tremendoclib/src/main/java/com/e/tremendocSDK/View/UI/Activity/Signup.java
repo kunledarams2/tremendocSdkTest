@@ -33,6 +33,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Signup extends AppCompatActivity implements FragmentChanger, ModelSaver<SDK_User> {
+
     public static final String STEP_ONE = "step_one";
     public static final String STEP_TWO = "step_two";
     private SDK_User sdk_user = new SDK_User();
@@ -56,7 +57,7 @@ public class Signup extends AppCompatActivity implements FragmentChanger, ModelS
 
     private void changeView(Fragment fragment) {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.frame, fragment);
+        fragmentTransaction.replace(R.id.signupFrame, fragment);
         fragmentTransaction.commit();
     }
 

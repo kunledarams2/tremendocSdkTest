@@ -114,14 +114,12 @@ public class DirectRouting extends AppCompatActivity {
 
             try{
                 JSONObject obj = new JSONObject(response);
-                if(obj.has("code")&& obj.getInt("code")==0 && !obj.isNull("code")){
-
-                    Toast.makeText(this, response,Toast.LENGTH_LONG).show();
-
+                if(obj.has("code")&& obj.getInt("code")==0 ){
+                    Log.d("DirectRouting","InitialConsultion" + response);
 
                     String doctcontId=obj.getString("doctorConnectionId");
-                    String consumercontId= obj.getString("consumerConnectionId");
-                    String consumerId=obj.getString("consumerId");
+                    String consumercontId= obj.getString("customerConnectionId");
+                    String consumerId=obj.getString("customerId");
                     String doctorId= obj.getString("doctorId");
                     String doctorImage= obj.getString("doctorImage");
                     String doctorPushToken= obj.getString("doctorPushToken");
@@ -248,6 +246,7 @@ public class DirectRouting extends AppCompatActivity {
     private void log(String e){
         Log.e("Routing", "_-_________-------------________" +e);
     }
+
 
 
 }

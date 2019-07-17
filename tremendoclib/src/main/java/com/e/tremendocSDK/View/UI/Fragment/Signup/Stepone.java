@@ -44,12 +44,6 @@ public class Stepone extends FragmentTitled implements View.OnClickListener {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @return A new instance of fragment Stepone.
-     */
 
     public static Stepone newInstance() {
         Stepone fragment = new Stepone();
