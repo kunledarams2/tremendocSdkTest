@@ -174,7 +174,7 @@ class Steptwo : FragmentTitled(), View.OnClickListener {
             sdkUser.dob = mdob
             sdkUser.gender = mgender.substring(0, 1)
 
-            modelSaver!!.onSave(sdkUser)
+//            modelSaver!!.onSave()
 
         }
 
