@@ -54,7 +54,7 @@ public class DirectRouting extends AppCompatActivity {
         setContentView(R.layout.activity_direct_routing);
 
         getDoctorInfo= getIntent().getStringArrayListExtra("doctorDetails");
-        toastMessage(getDoctorInfo.get(1));
+        toastMessage(getDoctorInfo.get(0));
         checkDoctor();
     }
 
@@ -114,7 +114,7 @@ public class DirectRouting extends AppCompatActivity {
 
             try{
                 JSONObject obj = new JSONObject(response);
-                if(obj.has("code")&& obj.getInt("code")==0 ){
+                if(obj.has("code")&& obj.getInt("code")==0 && !obj.isNull("code") ){
                     Log.d("DirectRouting","InitialConsultion" + response);
 
                     String doctcontId=obj.getString("doctorConnectionId");

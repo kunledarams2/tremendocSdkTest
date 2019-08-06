@@ -1,1 +1,1 @@
-include ':app', ':tremendoclib'
+include ':app', ':tremendoclib', ':sinch-android-rtc-3.14.2'
